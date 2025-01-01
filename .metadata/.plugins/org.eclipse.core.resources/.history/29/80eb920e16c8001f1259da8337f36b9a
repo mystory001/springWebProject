@@ -1,0 +1,8 @@
+package com.mystory001.sample;
+
+import org.junit.runner.RunWith;
+
+@RunWith(springjunit)
+public class SampleTest {
+
+}

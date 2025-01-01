@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 클래스에서 객체를 생성하고 객체들의 의존성에 대한 처리 작업까지 내부에서 모든 것이 처리됨. 스프링에서 관리되는 객체를 Bean(빈)이라고 함 -->
+	<!-- root-context.xml은 스프링 프레임워크에서 관리해야하는 객체(빈)를 설정하는 설정 파일 -->
+	<context:component-scan base-package="com.mystory001.sample"></context:component-scan> 
+	
+		
+</beans>
