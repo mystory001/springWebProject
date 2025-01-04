@@ -2,14 +2,48 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!-- 스프링이 로딩되면서 읽어 들이는 문서, 주로 이미 만들어진 클래스들을 이용해서 스프링의 빈(Bean)으로 등록할 때 사용 -->
+	<!-- 일반적인 상황이라면 프로젝트에 직접 작성하는 클래스들은 어노테이션을 이용하는 경우가 많고, 외부 jar 파일 등으로 사용하는 클래스들은 <bean> 태그를 이용해서 작성하는 경우가 대부분  -->
+
+	<!-- DB와 Connection을 맺고 끊는 작업은 리소스의 소모가 많은 작업 → Pooling 이라는 기법을 통해서 객체를 미리 생성하고 빌려쓰는 방식으로 이용해서 연결 시간을 단축(Commons DBCP나 HikariCP등을 활용) -->
+<!-- 	<bean id="hikariConnfig" class="com.zaxxer.hikari.HikariConfig"> -->
+<!-- 		<property name="driverClassName" value="com.zaxxer.hikari.HikariConfig"></property> -->
+<!-- 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"></property> -->
+<!-- 		<property name="username" value="book_ex"></property> -->
+<!-- 		<property name="password" value="book_ex"></property> -->
+<!-- 	</bean> -->
+	<!-- log4jdbc-log4j2 설정 : SQL의 로그를 보기 위한 설정(DB 버전을 많이 타기 때문에 주의해야함) -->
+	<bean id="hikariConnfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:XE"></property>
+		<property name="username" value="book_ex"></property>
+		<property name="password" value="book_ex"></property>
+	</bean>
 	
-	<!-- 클래스에서 객체를 생성하고 객체들의 의존성에 대한 처리 작업까지 내부에서 모든 것이 처리됨. 스프링에서 관리되는 객체를 Bean(빈)이라고 함 -->
+	<bean id="dateSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg ref="hikariConnfig" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dateSource"></property>
+	</bean>
+
+	<mybatis-spring:scan base-package="com.mystory001.mapper"/>
+
+	<!-- 클래스에서 객체를 생성하고 객체들의 의존성에 대한 처리 작업까지 내부에서 모든 것이 처리됨. 스프링에서 관리되는 객체를 
+		Bean(빈)이라고 함 -->
 	<!-- root-context.xml은 스프링 프레임워크에서 관리해야하는 객체(빈)를 설정하는 설정 파일 -->
-	<context:component-scan base-package="com.mystory001.sample"></context:component-scan> 
-	
+	<context:component-scan
+		base-package="com.mystory001.sample"></context:component-scan>
 		
+		
+
+
 </beans>
