@@ -22,6 +22,12 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
+		<!-- WAS 구동 중 가장 흔한 에러와 관련된 HTTP 상태 코드는 404(web.xml을 이용해서 처리), 500(Internal Server Error @ExceptionHandler를 이용해서 처리) 에러 코드 -->
+		<!-- 404 : 잘못된 URL 호출 시, WAS 내부에서 발생하는 에러를 처리하는 방식, 스프링 MVC의 모든 요청은 DispatcherServlet을 이용해서 처리되므로 404 에러도 같이 처리할 수 있음 -->
+		<init-param>
+			<param-name>throwExceptionIfNoHandlerFound</param-name>
+			<param-value>true</param-value>		
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		

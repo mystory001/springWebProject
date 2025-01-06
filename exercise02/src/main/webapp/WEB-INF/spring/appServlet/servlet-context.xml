@@ -7,6 +7,8 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+	<!-- 스프링 MVC의 특정한 객체(빈)를 설정해서 파일을 처리 -->
+
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -22,7 +24,15 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.mystory001.github" />
-	
-	
+	<context:component-scan base-package="com.mystory001.exception" />
+
+	<!-- 파일 업로드의 경우 반드시 id 속성의 값을 multipartResolver로 정확하게 지정해줘야함 -->	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="utf-8"></beans:property> <!-- 업로드 하는 ㅍ ㅏ일의 이름이 한글일 경우 깨지는 문제를 처리 -->
+		<beans:property name="maxUploadSize" value="104857560"></beans:property> <!-- 한 번의 Request로 전달될 수 있는 최대의 크기 -->
+		<beans:property name="maxUploadSizePerFile" value="2097152"></beans:property> <!-- 하나의 파일 최대 크기 -->
+		<beans:property name="uploadTempDir" value="file:/C:/upload/tmp"></beans:property> <!-- 임시 파일 형태로 보관할 때 경로 -->
+		<beans:property name="maxInMemorySize" value="10485756"></beans:property> <!-- 메모리상에서 유지하는 최대의 크기, 이 크기 이상의 데이터는 uploadTempDir에 임시 파일의 형태로 보관 -->
+	</beans:bean>
 	
 </beans:beans>

@@ -1,17 +1,20 @@
 package com.mystory001.github;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.mystory001.domain.SampleDTO;
 import com.mystory001.domain.SampleDTOList;
@@ -115,4 +118,70 @@ public class SampleController {
 	// http://localhost:8080/sample/test06?title=title&dueDate=2025/01/01
 	// INFO : com.mystory001.github.SampleController - todoDTO : TodoDTO(title=title, dueDate=Wed Jan 01 00:00:00 KST 2025)
 	
+	@GetMapping("/test07")
+	public String test07(SampleDTO sampleDTO, int page) {
+		log.info("sampleDTO : " + sampleDTO);
+		log.info("page : " + page);
+		return "/sample/test07";
+	}
+
+	@GetMapping("/test08")
+	public String test08(SampleDTO sampleDTO, @ModelAttribute("page") int page) { // @ModelAttribute는 강제로 전달받은 파라미터를 Model에 담아서 전달하도록 할 때 필요한 어노테이션. 타입에 관계없이 무조건 Model에 담아서 전달되므로, 파라미터로 전달된 데이터를 다시 화면에서 사용해야 할 경우 유용하게 사용. 반드시 값을 지정
+		log.info("sampleDTO : " + sampleDTO);
+		log.info("page : " + page);
+		return "/sample/test08";
+	}
+	
+	// Controller 리턴 타입 : 스프링 MVC의 구조가 기존의 상속과 인터페이스에서 어노테이션을 사용하는 방식으로 변한 이후 가장 큰 변화는 리턴 타입이 자유로워짐
+	// String : jsp를 이용하는 경우 jsp 파일의 경로와 파일이름을 나타내기 위해서 사용
+	// void : 호출하는 URL과 동일한 이름의 jsp를 의미
+	// VO 또는 DTO 타입 : JSON 타입의 데이터를 만들어서 반환하는 용도로 사용
+	// ResponseEntity 타입 : response할 때 Http 헤더 정보와 내용을 가공하는 용도로 사용
+	
+	// String 타입 : 상황에 따라 다른 화면을 보여줄 필요가 있는 경우(if~else), 현재 프로젝트의 경우 JSP 파일의 이름을 의미
+
+	// void 타입 : 메서드의 리턴 타입을 void로 지정하는 경우 일반적인 경우에 해당 URL의 경로를 그대로 jsp 파일의 이름으로 사용하게 됨
+	// http://localhost:8080/sample/test09 → INFO : com.mystory001.github.SampleController - /test09()
+	@GetMapping("/test09")
+	public void test09() {
+		log.info("/test09()");
+	}
+	
+	// 객체 타입 : Controller의 메서드 리턴 타입을 VO나 DTO 타입 등 복합적인 데이터가 들어간 객체 타입으로 지정할 수 있는데 이 경우 주로 JSON 데이터를 만들어 내는 용도로 사용 → 이를 위해서는 jackson-databind 라이브러리를 추가
+	@GetMapping("/test10")
+	public @ResponseBody SampleDTO test10() {
+		log.info("/test10()");
+		SampleDTO sampleDTO = new SampleDTO();
+		sampleDTO.setAge(20);
+		sampleDTO.setName("홍길동");
+		
+		return sampleDTO; // {"name":"홍길동","age":20} → Response Headers : Content-Type: application/json;charset=UTF-8
+	}
+	
+	// ResponseEntitiy 타입 : HTTP 프로토콜의 헤더를 다루는 경우가 종종 있음. HttpServletRequest나 HttpServletResponse를 직접 핸들링하지 않아도 이런 작업이 가능하도록 되었기 때문에 이러한 처리를 위해 ResponseEntitiy를 통해서 원하는 헤더 정보나 데이터를 전달
+	@GetMapping("/test11")
+	public ResponseEntity<String> test11(){
+		log.info("/test11()");
+
+		String msg = "{\"name\": \"홍길동\"}";
+		HttpHeaders header = new HttpHeaders(); // org.springframework.http.HttpHeaders
+		header.add("Content-Type", "application/json;charset=UTF-8");
+		
+		return new ResponseEntity<String>(msg,header,HttpStatus.OK); // {"name": "홍길동"}
+	}
+	// ResponseEntity는 HttpHeaders 객체를 같이 전달할 수 있고, 이를 통해 원하는 HTTP 헤더 메시지를 가공하는 것이 가능
+	
+	@GetMapping("/testUpload")
+	public void testUpload() {
+		log.info("/testUpload()");
+	}
+	
+	@PostMapping("/testUploadPost")
+	public void testUploadPost(ArrayList<MultipartFile> files) { // 스프링 MVC는 전달되는 파라미터가 동일한 이름으로 여러 개 존재하면 배열로 처리가 가능
+		for(int i = 0; i < files.size(); i++) {
+			log.info("=============");
+			log.info("name : " + files.get(i).getOriginalFilename());
+			log.info("size : " + files.get(i).getSize());
+		}
+	}
 }
