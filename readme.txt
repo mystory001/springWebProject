@@ -5,7 +5,13 @@
 - 도구 : Spring Tool Suite 3
 - 서적 : 코드로 배우는 스프링 웹 프로젝트(개정판)
 - 학습 내용
+240107 : 스프링 MVC 프로젝트의 기본구성
 240106 : 스프링 MVC의 Controller(Model, 리턴타입)
 240105 : 스프링 MVC 기본구조와 Controller
 250104 : 오라클 DB 연동, MyBatis 연동
 250101 : 프로젝트 생성 및 설정
+
+-프로젝트 설명
+excercise01 : 스프링 개발 환경 구축
+excercise02 : 스프링 MVC 설정
+excercise03 : 기본적인 웹 게시물 관리
