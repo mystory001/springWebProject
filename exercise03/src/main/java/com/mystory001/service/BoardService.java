@@ -30,15 +30,15 @@ public class BoardService implements BoardSerivceInterface{
 	}
 
 	@Override
-	public void update(BoardVO boardVO) {
+	public boolean update(BoardVO boardVO) {
 		log.info("BoardService update()...............");
-		boardMapper.update(boardVO);
+		return boardMapper.update(boardVO);
 	}
 
 	@Override
-	public void delete(Integer bno) {
+	public boolean delete(Integer bno) {
 		log.info("BoardService update()...............");
-		boardMapper.delete(bno);
+		return boardMapper.delete(bno);
 	}
 
 	@Override

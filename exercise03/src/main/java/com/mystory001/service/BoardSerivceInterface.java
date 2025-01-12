@@ -10,9 +10,9 @@ public interface BoardSerivceInterface {
 
 	public void insert(BoardVO boardVO);
 	
-	public void update(BoardVO boardVO);
+	public boolean update(BoardVO boardVO);
 	
-	public void delete(Integer bno);
+	public boolean delete(Integer bno);
 	
 	public List<BoardVO> getList();
 	
