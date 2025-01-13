@@ -30,6 +30,11 @@ public class BoardController {
 		model.addAttribute("list", boardService.getList());
 	}
 	
+	@GetMapping("/insert")
+	public void insert() {
+		
+	}
+	
 	@PostMapping("/insert")
 	public String insert(BoardVO boardVO, RedirectAttributes redirectAttributes) {
 		log.info("BoardController insert()....................");
@@ -43,6 +48,11 @@ public class BoardController {
 	public void get(Integer bno, Model model) {
 		log.info("BoardController get()....................");
 		model.addAttribute("bno", boardService.get(bno));
+	}
+	
+	@GetMapping("/update")
+	public void update() {
+		
 	}
 	
 	@PostMapping("/update")
