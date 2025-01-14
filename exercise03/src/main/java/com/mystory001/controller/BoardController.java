@@ -39,8 +39,8 @@ public class BoardController {
 	public String insert(BoardVO boardVO, RedirectAttributes redirectAttributes) {
 		log.info("BoardController insert()....................");
 		log.info("boardVO : " + boardVO);
-		redirectAttributes.addFlashAttribute("bno", boardVO.getBno());
 		boardService.insert(boardVO);
+		redirectAttributes.addFlashAttribute("bno", boardVO.getBno());
 		return "redirect:/board/list";
 	}
 	

@@ -61,4 +61,8 @@ primary key (bno);
 - 비즈니스 영역에 있는 객체들은 서비스라는 용어를 많이 사용
 
 * Controller
-- 하나의 클래스 내에 여러 메서드를 작성하고, @RequestMapping 등을 이용해 URL을 분기하느 ㄴ구조로 작성
+- 하나의 클래스 내에 여러 메서드를 작성하고, @RequestMapping 등을 이용해 URL을 분기하는 구조로 작성
+
+* redirect
+- 등록, 수정, 삭제 작업은 처리가 완료된 후 다시 동일한 내용을 전송할 수 없도록 브라우저의 URL을 이동하는 방식을 이용. 이 과정에서 브라우저에 등록, 수정, 삭제의 결과를 바로 알 수 있게 피드백 해줘야 함
+- redirect 처리 할 때 RedirectAttributes라는 객체를 이용 addFlashAttribute()의 경우 일회성으로만 데이터를 전달할 수 있음
