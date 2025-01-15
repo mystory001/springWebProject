@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="inc/top.jsp" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ include file="inc/top.jsp" %>
+
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tables</h1>
+                    <h1 class="page-header">board/list</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -14,12 +15,12 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DataTables Advanced Tables
-                            <button id="regBtn" type="button" class="btn btn-xs pull-right">INSERT</button>
+                            list
+                            <button id="regBtn" type="button" class="btn btn-xs pull-right">WRITING</button>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover">
+                            <table class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th>#BNO</th>
@@ -29,78 +30,75 @@
                                         <th>UPDATEDATE</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                
                                 <c:forEach items="${list}" var="boardVO">
-                                    <tr class="odd gradeX">
-                                        <td><c:out value="${boardVO.bno}" /></td>
-                                        <td><c:out value="${boardVO.title}" /></td>
-                                        <td><c:out value="${boardVO.writer}" /></td>
-                                        <td><fmt:formatDate value="${boardVO.regdate }" pattern="yyyy-MM-dd"/> </td>
-                                        <td><fmt:formatDate value="${boardVO.updatedate }" pattern="yyyy-MM-dd" /></td>
-                                    </tr>
+                                	<tr>
+                                		<td><a href='/board/get?bno=<c:out value="${boardVO.bno }"/>'><c:out value="${boardVO.bno }" /></a></td>
+                                		<td><c:out value="${boardVO.title }" /></td>
+                                		<td><c:out value="${boardVO.writer }" /></td>
+                                		<td><fmt:formatDate value="${boardVO.regdate }" pattern="yyyy-MM-dd" /></td>
+                                		<td><fmt:formatDate value="${boardVO.updatedate }" pattern="yyyy-MM-dd" /></td>
+                                	</tr>
                                 </c:forEach>
-                                </tbody>
                             </table>
-                            <!-- /.table-responsive -->
+                            
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <h5 class="modal-title">Result</h5>
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							      </div>
+							      <div class="modal-body">
+							        <p>처리가 완료되었습니다.</p>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.col-lg-6 -->
             </div>
-
-<div id="myModal" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
+            <!-- /.row -->
+ 
+<!--  등록, 수정, 삭제 작업은 처리가 완료된 후 다시 동일한 내용을 전송할 수 없도록 아예 브라우저의 URL을 이동하는 방식을 이용 → 사용자에게 작업이 완료됨을 알려줘야함 → alert()나 모달 이용 -->
+<!-- redirect 처리할 때 RedirectAttributes라는 특별한 타입의 객체를 이용, 일회성으로만 데이터를 전달 -->
+<script type="text/javascript">
 $(document).ready(function(){
-	var result = '<c:out value="${result}"/>';
-	
-	console.log(result);
-	
-	checkModal(result);
-	
-	history.replaceState({},null,null); // 히스토리 클리어
-	
-	function checkModal(result){
-		
-		if(result ==='' || history.state){
-			return;
-		}
-		
-		if(result === 'success'){
-			$('.modal-body').html("정상적으로 처리됨.");
-		} else if(parseInt(result)>0){
-			$('.modal-body').html("게시글 " + parseInt(result) + " 번이 등록됨.");
-		}
-		
-		$("#myModal").modal("show");
-	}
 
-	$("#regBtn").click(function(){
-		self.location = "/board/insert";
-	})
-
+	 var result = "<c:out value='${result}' />";
 	
-});
+	 checkModal(result);
+	 
+	 history.replaceState({},null,null);
+	 
+	 function checkModal(result){
+		 if(result == '' || history.state){
+			 return;
+		 }
+		 if(parseInt(result)>0){
+			 $(".modal-body").html("게시글 " + parseInt(result) + "번이 등록되었습니다.");
+		 }
+		 $("#myModal").modal("show");
+	 } // function checkModal(result)
+	
+	 $("#regBtn").on("click", function(){
+		self.location = "/board/insert"; 
+	 });
+	 
+	 
+}); //document
+
 </script>
 
-<%@include file="inc/bottom.jsp" %>            
+
+<%@ include file="inc/bottom.jsp" %>

@@ -46,9 +46,9 @@ public class BoardMapperTests {
 	@Test
 	public void testInsert() {
 		log.info("BoardMapper testInsert().....................");
-		boardVO.setTitle("제목");
-		boardVO.setContent("내용");
-		boardVO.setWriter("작성자");
+		boardVO.setTitle("250115");
+		boardVO.setContent("250115");
+		boardVO.setWriter("250115");
 		boardMapper.insert(boardVO);
 		log.info("입력한 값 : " + boardVO);
 	}

@@ -24,19 +24,20 @@ public class BoardService implements BoardSerivceInterface{
 	}
 
 	@Override
-	public void insert(BoardVO boardVO) {
+	public int insert(BoardVO boardVO) {
 		log.info("BoardService insert()...............");
-		boardMapper.insert(boardVO);
+		boardMapper.insertSelectKey(boardVO);
+		return boardVO.getBno();
 	}
 
 	@Override
-	public boolean update(BoardVO boardVO) {
+	public int update(BoardVO boardVO) {
 		log.info("BoardService update()...............");
 		return boardMapper.update(boardVO);
 	}
 
 	@Override
-	public boolean delete(Integer bno) {
+	public int delete(Integer bno) {
 		log.info("BoardService update()...............");
 		return boardMapper.delete(bno);
 	}

@@ -16,8 +16,8 @@ public interface BoardMapper {
 	
 	public BoardVO get(Integer bno);
 	
-	public boolean delete(Integer bno);
+	public int delete(Integer bno);
 	
-	public boolean update(BoardVO boardVO);
+	public int update(BoardVO boardVO);
 
 }

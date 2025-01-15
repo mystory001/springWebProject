@@ -52,7 +52,7 @@ public class BoardControllerTests {
 	@Test
 	public void testGet() throws Exception{
 		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/get")
-				  .param("bno", "1")
+				  .param("bno", "1376525")
 				  ).andReturn().getModelAndView().getModelMap());
 	}
 

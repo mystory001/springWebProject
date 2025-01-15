@@ -8,11 +8,11 @@ public interface BoardSerivceInterface {
 
 	public BoardVO get(Integer bno);
 
-	public void insert(BoardVO boardVO);
+	public int insert(BoardVO boardVO);
 	
-	public boolean update(BoardVO boardVO);
+	public int update(BoardVO boardVO);
 	
-	public boolean delete(Integer bno);
+	public int delete(Integer bno);
 	
 	public List<BoardVO> getList();
 	

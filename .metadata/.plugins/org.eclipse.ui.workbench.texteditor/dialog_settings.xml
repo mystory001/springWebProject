@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="page-wrapper"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="page-wrapper"/>
+			<item value="&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=UTF-8&quot;"/>
+			<item value="div id=&apos;page"/>
+			<item value="../"/>
+			<item value="resoruces"/>
+			<item value="/resources"/>
 			<item value="&lt;div class=&quot;sb-nav-link-icon&quot;&gt;&lt;i class=&quot;fas fa-tachometer-alt&quot;&gt;&lt;/i&gt;&lt;/div&gt;"/>
 			<item value="                &lt;footer class=&quot;py-4 bg-light mt-auto&quot;&gt;"/>
 			<item value="Forms"/>
@@ -17,14 +23,13 @@
 			<item value="Dashboard"/>
 			<item value="&lt;nav"/>
 			<item value="Core"/>
-			<item value="Core\"/>
-			<item value="&lt;main"/>
-			<item value="&lt;main&gt;"/>
-			<item value="&lt;!DOCTYPE html&gt;"/>
-			<item value="&lt;footer class=&quot;"/>
-			<item value="class=&quot;row&quot;"/>
 		</list>
 		<list key="replacehistory">
+			<item value="/resources/"/>
+			<item value="/resources"/>
+			<item value="/resoruces"/>
+			<item value="resources/"/>
+			<item value="resources"/>
 			<item value="debug"/>
 		</list>
 	</section>

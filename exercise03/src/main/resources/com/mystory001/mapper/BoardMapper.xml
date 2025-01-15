@@ -26,7 +26,7 @@
 	</insert>
 	
 	<select id="get" resultType="com.mystory001.domain.BoardVO">
-		select * from board where bno = #{bno}
+		select * from board where bno = #{bno} order by bno desc
 	</select>
 	
 	<delete id="delete">
