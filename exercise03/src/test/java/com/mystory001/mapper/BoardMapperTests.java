@@ -46,11 +46,19 @@ public class BoardMapperTests {
 	@Test
 	public void testInsert() {
 		log.info("BoardMapper testInsert().....................");
-		boardVO.setTitle("250115");
-		boardVO.setContent("250115");
-		boardVO.setWriter("250115");
-		boardMapper.insert(boardVO);
-		log.info("입력한 값 : " + boardVO);
+		boardVO.setTitle("더미 데이터");
+		boardVO.setContent("더미 데이터");
+		boardVO.setWriter("더미 데이터");
+		long start = System.currentTimeMillis();
+		for(int i = 0; i < 100000; i++) {
+			boardMapper.insert(boardVO);
+		}
+		long end = System.currentTimeMillis();
+		
+		log.info("100000건의 데이터를 넣는데 걸린 시간");
+		log.info(end - start);
+		
+//		log.info("입력한 값 : " + boardVO);
 	}
 
 	@Test

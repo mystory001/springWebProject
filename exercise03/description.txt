@@ -66,3 +66,60 @@ primary key (bno);
 * redirect
 - 등록, 수정, 삭제 작업은 처리가 완료된 후 다시 동일한 내용을 전송할 수 없도록 브라우저의 URL을 이동하는 방식을 이용. 이 과정에서 브라우저에 등록, 수정, 삭제의 결과를 바로 알 수 있게 피드백 해줘야 함
 - redirect 처리 할 때 RedirectAttributes라는 객체를 이용 addFlashAttribute()의 경우 일회성으로만 데이터를 전달할 수 있음
+
+* order by
+- 데이터의 양이 많을수록 정렬은 많은 리소스를 소모함
+- 데이터베이스를 이용할 때 빠르게 처리, 필요한 양만큼만 데이터를 가져오는 것
+- 데이터가 맣은 경우 order by는 성능 저하를 가져옴 따라서 데이터가 적은 경우, 정렬을 빠르게 할 수 있는 방법이 있는 경우에만 사용
+- SQL 파싱(SQL 구문에 오류가 있는지 SQL을 실행해야 하는 대상 객체가 존재하는지 확인) → SQL 최적화(SQL이 실행되는데 필요한 비용을 계산, 어떤 방식으로 실행하는 것이 가장 좋다느 것을 판단하는 실행 계획을 세우게 됨) → SQL 실행(실행 계획을 통해 메모리상에서 데이터를 읽거나 물리적인 공간에서 데이터를 로딩하는 등의 작업)
+- 더미 데이터 생성 → insert into board(bno, title, content, writer) (select seq_board.nextval, title, content, writer from board);
+  ㄴ test에서 for문을 이용해서 데이터 생성
+  ㄴ 	public void testInsert() {
+		log.info("BoardMapper testInsert().....................");
+		boardVO.setTitle("더미 데이터");
+		boardVO.setContent("더미 데이터");
+		boardVO.setWriter("더미 데이터");
+		long start = System.currentTimeMillis();
+		for(int i = 0; i < 100000; i++) {
+			boardMapper.insert(boardVO);
+		}
+		long end = System.currentTimeMillis();
+		
+		log.info("100000건의 데이터를 넣는데 걸린 시간");
+		log.info(end - start); // 22923
+- 데이터가 많은 상태에서 정렬 작업이 문제가 됨 → 인덱스를 이용해 정렬을 생략하는 방법을 이용됨, ※ 인덱스 : 별도의 정렬을 하지 않는 방법
+- 테이블은 중간에 순서가 섞여 있는 경우가 대부분인데 인덱스와 실제 테이블을 연결하는 고리는 ROWID가 존재, ROWID는 데이터베이스 내의 주소에 해당하는 모든 데이터는 자신만의 주소를 가지고 있음
+
+* 인덱스
+- 정렬이 되어 있음, 정렬이 이미 되어 있는 상태이므로 데이터를 찾아내서 이들을 SORT하는 과정을 생략할 수 있음
+- 뒤에서부터 찾아 올라가는 descending
+- 인덱스를 역순으로 찾기 때문에 가장 먼저 찾은 bno 값은 가장 큰 값을 가진 데이터가 됨. 이후 테이블에 접근해서 데이터를 가져오게 되는데, 이런 과정이 반복되면 정렬을 하지 않아도 동일하게 정렬된 결과를 볼 수 있게 됨
+
+* 힌트
+- 웹페이지의 목록은 주로 시간의 역순으로 정렬된 결과를 보여줌
+- 오라클의 경우 select문을 전달할 때 hint라는 것을 사용할 수 있는데, 힌트는 데이터베이스에 select문을 실행할 때 원하는 방향으로 힌트를 주는 것이라고 생각하면됨
+- 힌트 구문에서 에러가 날 경우 SQL 실행에 지장을 주지 않음
+- 문법 : select /*+ 힌트이름(파라미터1,파라미터2,...)*/ 컬럼명 from 테이블명 [where 조건];
+       full 힌트 : 테이블의 모든 데이터를 스캔하기 때문에 데이터가 많을 때는 상당히 느리게 실행. ex) select /*+ full(board) */ * from board order by bno desc;
+       index_asc/desc : 인덱스를 순서/역순으로 이용할 것인지를 지정, 주로 order by를 위해서 사용. 인덱스 자체가 정렬을 해 둔 상태이므로 정렬 과정을 생략하기 위한 용도. 테이블명과 인덱스 명을 같이 파라미터로 사용. ex) select /*+ index_desc(board board_pk) */ * from board where bno > 0;
+
+* ROWNUM
+- 오라클데이터베이스는 페이지 처리를 위해 rownum이라는 키워드를 사용해서 데이터에 순번을 붙여 사용
+- SQL이 실행된 결과에 넘버링
+- select문에는 rownum이라는 변수를 이용해서 해당 데이터가 몇 번째로 나오는지 알아낼 수 있음
+- rownum은 실제 데이터가 아니라 테이블에서 데이터를 추출한 후에 처리되는 변수이므로 상황에 따라 그 값이 매 번 달라질 수 있음
+- 인덱스를 이용한 접근 시 rownum
+
+* 인라인뷰
+- select 문 안쪽 from에 다시 select문
+- 어떤 결과를 구하는 select 문이 존재하고 그 결과를 다시 대상으로 삼아서 select 하는 것
+- 문법 : select ... from (select... from...)
+  ex) select bno, title
+	from (
+	select 
+	/*+ index_desc(board board_pk) */ rownum rn, bno, title
+	from board
+	where rownum <= 20
+	)
+	where rn > 10;
+
