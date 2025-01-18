@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mystory001.domain.BoardVO;
+import com.mystory001.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -70,9 +71,8 @@ public class BoardServiceTests {
 	@Test
 	public void testGet() {
 		log.info("BoardServiceTests testGet()...............");
-		log.info(boardService.get(4));
+//		log.info(boardService.get(4));
+		boardService.getList(new Criteria(2,10)).forEach(boardVO -> log.info(boardVO));
 	}
-	
-	
 
 }

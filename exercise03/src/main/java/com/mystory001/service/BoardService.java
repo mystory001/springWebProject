@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.mystory001.domain.BoardVO;
+import com.mystory001.domain.Criteria;
 import com.mystory001.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
@@ -43,9 +44,10 @@ public class BoardService implements BoardSerivceInterface{
 	}
 
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(Criteria criteria) {
 		log.info("BoardService getList()...............");
-		return boardMapper.getList();
+		log.info("critera : " + criteria);
+		return boardMapper.getListWithPaging(criteria);
 	}
 
 }

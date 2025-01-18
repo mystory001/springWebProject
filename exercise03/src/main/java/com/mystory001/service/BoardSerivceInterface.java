@@ -3,6 +3,7 @@ package com.mystory001.service;
 import java.util.List;
 
 import com.mystory001.domain.BoardVO;
+import com.mystory001.domain.Criteria;
 
 public interface BoardSerivceInterface {
 
@@ -14,6 +15,8 @@ public interface BoardSerivceInterface {
 	
 	public int delete(Integer bno);
 	
-	public List<BoardVO> getList();
+//	public List<BoardVO> getList();
+
+	public List<BoardVO> getList(Criteria criteria);
 	
 }

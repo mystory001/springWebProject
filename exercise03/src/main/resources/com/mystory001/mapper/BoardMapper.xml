@@ -39,5 +39,17 @@
 		set title = #{title}, content = #{content}, writer = #{writer}, updatedate = sysdate
 		where bno = #{bno}
 	</update>
+	
+	<select id="getListWithPaging" resultType="com.mystory001.domain.BoardVO">
+	 	<![CDATA[ 
+	 	select bno, title, content, writer, regdate, updatedate
+	 	from (
+	 		  select /*+ index_desc(board board_pk)*/ rownum rn, bno, title, content, writer, regdate, updatedate
+	 		  from board
+	 		  where rownum <= #{pageNum} * #{amount}
+	 		  )
+	 	where rn > (#{pageNum} - 1) * #{amount}
+	 	 ]]> 
+	</select>
 
 </mapper>

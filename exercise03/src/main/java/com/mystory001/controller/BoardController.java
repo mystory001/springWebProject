@@ -3,12 +3,15 @@ package com.mystory001.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mystory001.domain.BoardVO;
+import com.mystory001.domain.Criteria;
+import com.mystory001.domain.PageDTO;
 import com.mystory001.service.BoardSerivceInterface;
 
 import lombok.AllArgsConstructor;
@@ -24,9 +27,10 @@ public class BoardController {
 	
 	// 게시물의 목록을 전달해야하므로 Model을 파라미터로 지정하고, BoardService 객체의 getList() 결과를 담아 전달
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(Model model, Criteria criteria) {
 		log.info("BoardController list()......................");
-		model.addAttribute("list", boardService.getList());
+		model.addAttribute("list", boardService.getList(criteria));
+		model.addAttribute("page", new PageDTO(criteria,123));
 	}
 	
 	@GetMapping("/insert")
@@ -43,7 +47,7 @@ public class BoardController {
 	}
 	
 	@GetMapping({"/get", "/update"})
-	public void get(@RequestParam("bno") Integer bno, Model model) {
+	public void get(@RequestParam("bno") Integer bno, Model model, @ModelAttribute("criteria") Criteria criteria) {
 		log.info("BoardController get() or update()....................");
 		model.addAttribute("boardVO", boardService.get(bno));
 		log.info(bno);
@@ -55,7 +59,7 @@ public class BoardController {
 //	}
 	
 	@PostMapping("/update")
-	public String update(BoardVO boardVO, RedirectAttributes redirectAttributes) {
+	public String update(BoardVO boardVO, RedirectAttributes redirectAttributes, @ModelAttribute("criteria") Criteria criteria) {
 		log.info("BoardController update()....................");
 		log.info("수정 전 boardVO : " + boardVO);
 		
@@ -63,16 +67,24 @@ public class BoardController {
 			redirectAttributes.addFlashAttribute("result", "success");
 			log.info("수정 후 boardVO : " + boardVO);
 		}
+		
+		redirectAttributes.addAttribute("pageNum", criteria.getPageNum());
+		redirectAttributes.addAttribute("amount", criteria.getAmount());
+		
 		return "redirect:/board/list";
 	}
 
 	@PostMapping("/delete")
-	public String delete(Integer bno, RedirectAttributes redirectAttributes) {
+	public String delete(@RequestParam("bno") Integer bno, RedirectAttributes redirectAttributes, @ModelAttribute("criteria") Criteria criteria) {
 		log.info("BoardController delete()....................");
 		log.info("bno............. : " + bno);
 		if(boardService.delete(bno) == 1) {
 			redirectAttributes.addFlashAttribute("result", "success");
 		}
+		
+		redirectAttributes.addAttribute("pageNum", criteria.getPageNum());
+		redirectAttributes.addAttribute("amount", criteria.getAmount());
+		
 		return "redirect:/board/list";
 	}
 	

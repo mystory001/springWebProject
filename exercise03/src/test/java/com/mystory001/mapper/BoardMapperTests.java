@@ -1,5 +1,7 @@
 package com.mystory001.mapper;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Before;
@@ -10,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.mystory001.domain.BoardVO;
+import com.mystory001.domain.Criteria;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -92,6 +95,13 @@ public class BoardMapperTests {
 		boardVO.setWriter("update user");
 		boardMapper.update(boardVO);
 		log.info("업데이트 된 내용 : " + boardVO);
+	}
+	
+	@Test
+	public void testGetListWithPaging() {
+		Criteria criteria = new Criteria();
+		List<BoardVO> list =  boardMapper.getListWithPaging(criteria);
+		list.forEach(boardVO -> log.info(boardVO));
 	}
 	
 

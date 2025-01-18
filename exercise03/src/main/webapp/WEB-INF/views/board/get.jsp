@@ -36,6 +36,8 @@
                             	<button data-oper="list" class="btn btn-info">List</button>
                             <form id="operForm" action="/board/update" method="get">
                             	<input type="hidden" name="bno" id="bno" value="<c:out value='${boardVO.bno }'/>"> 
+                            	<input type="hidden" name="pageNum" value="<c:out value='${criteria.pageNum}'/>"> 
+                            	<input type="hidden" name="amount" value="<c:out value='${criteria.amount}'/>"> 
                             </form>
                         </div>
                     </div>

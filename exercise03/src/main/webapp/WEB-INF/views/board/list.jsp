@@ -33,14 +33,34 @@
                                 
                                 <c:forEach items="${list}" var="boardVO">
                                 	<tr>
-                                		<td><a href='/board/get?bno=<c:out value="${boardVO.bno }"/>'><c:out value="${boardVO.bno }" /></a></td>
-                                		<td><c:out value="${boardVO.title }" /></td>
+                                		<td><c:out value="${boardVO.bno }" /></td>  
+                                		<td><a class="move" href="<c:out value='${boardVO.bno}'/>"><c:out value="${boardVO.title}"/></a></td>
                                 		<td><c:out value="${boardVO.writer }" /></td>
                                 		<td><fmt:formatDate value="${boardVO.regdate }" pattern="yyyy-MM-dd" /></td>
                                 		<td><fmt:formatDate value="${boardVO.updatedate }" pattern="yyyy-MM-dd" /></td>
                                 	</tr>
                                 </c:forEach>
                             </table>
+                            	${page}
+                            <div class="pull-right">
+                            	<ul class="pagination">
+                            		<c:if test="${page.prev}"> 
+								    	<li class="page-item"><a class="page-link" href="${page.startPage - 1}" tabindex="-1">Previous</a></li>
+									</c:if>
+									<c:forEach begin="${page.startPage}" end="${page.endPage}" var="num">
+										<li class="page-item ${page.criteria.pageNum == num? 'active' :''}"><a class="page-link" href="${num}">${num}</a></li>
+									</c:forEach>                
+									<c:if test="${page.next}">            	
+								    	<li class="page-item"><a class="page-link" href="${page.endPage + 1}">Next</a></li>
+                            		</c:if>
+                            	</ul>
+                            </div>
+                            
+                            
+                            <form id="actionForm" action="/board/list" method="get">
+                            	<input type="hidden" name="pageNum" value= "${page.criteria.pageNum}">
+                            	<input type="hidden" name="amount" value= "${page.criteria.amount}">
+                            </form>
                             
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
 							  <div class="modal-dialog" role="document">
@@ -89,11 +109,28 @@ $(document).ready(function(){
 			 $(".modal-body").html("게시글 " + parseInt(result) + "번이 등록되었습니다.");
 		 }
 		 $("#myModal").modal("show");
-	 } // function checkModal(result)
+	 } // Modal
 	
 	 $("#regBtn").on("click", function(){
 		self.location = "/board/insert"; 
-	 });
+	 }); // regBtn
+	 
+	 var actionForm = $("#actionForm");
+	 
+	 $(".page-link").on("click", function(e){
+		 e.preventDefault();
+		 
+		 actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		 actionForm.submit();
+	 }); // actionForm
+	 
+	 $(".move").on("click", function(e){
+		 e.preventDefault();
+		 
+		 actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
+		 actionForm.attr("action","/board/get");
+		 actionForm.submit();
+	 }); // move
 	 
 	 
 }); //document
