@@ -50,4 +50,10 @@ public class BoardService implements BoardSerivceInterface{
 		return boardMapper.getListWithPaging(criteria);
 	}
 
+	@Override
+	public int getTotalCount(Criteria criteria) {
+		log.info("BoardService getTotalCount()...............");
+		return boardMapper.getTotalCount(criteria);
+	}
+
 }

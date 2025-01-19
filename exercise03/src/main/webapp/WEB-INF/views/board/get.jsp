@@ -38,6 +38,8 @@
                             	<input type="hidden" name="bno" id="bno" value="<c:out value='${boardVO.bno }'/>"> 
                             	<input type="hidden" name="pageNum" value="<c:out value='${criteria.pageNum}'/>"> 
                             	<input type="hidden" name="amount" value="<c:out value='${criteria.amount}'/>"> 
+                            	<input type="hidden" name="keyword" value="<c:out value='${criteria.keyword}'/>"> 
+                            	<input type="hidden" name="type" value="<c:out value='${criteria.type}'/>"> 
                             </form>
                         </div>
                     </div>

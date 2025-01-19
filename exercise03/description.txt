@@ -143,3 +143,15 @@ primary key (bno);
 - 화면에서 보여지는 페이지의 시작 번호(startPage)와 끝 번호(endPage)
 ※ 끝 페이지 번호를 먼저 계산하는 것이 편함 → endPage = (int)(Math.ceil(페이지번호/10.0)) * 10;
 
+* 다중 항목 검색
+- 검색 조건이 2개 이상 붙는 다중 검색일 경우 → SQL에서 and와 or의 연산자 우선 순위를 생각해야함 → and > or → 다중 검색일 경우 or를 먼저 실행해야하므로 (A like ~~ or B like ~~) and rownum <= 20
+
+* MyBatis 동적 태그
+- if : test라는 속성과 함께 조건이 true가 되었을 때 포함된 SQL을 사용하고자 할 때 작성. OGNL 표현식(간단히 Java 객체를 위한 오픈소스 표현 언어라고 생각하면 될까 https://commons.apache.org/dormant/commons-ognl/language-guide.html)
+- choose : if, else if 또는 JSTL의 choose와 유사 choose when(조건1) when(조건2) ,... otherwise
+- trim, where, set : if나 choose와 같은 태그들을 내포하여 SQL들을 연결해주고, 앞 뒤에 필요한 구문들(and, or, where 등)을 추가해주거나 생략하는 역할
+
+* UriComponentsBulider 클래스
+- 웹 페이지에서 매번 파라미터를 유지하는 일이 번거로울 때 이용하는 클래스
+- queryParam() 메서드를 이용해서 필요한 파라미터들을 손쉽게 추가할 수 있음
+- URL을 만들어주면 리다이렉트를 하거나, form 태그를 사용하는 상황을 많이 줄여 줄 수 있음

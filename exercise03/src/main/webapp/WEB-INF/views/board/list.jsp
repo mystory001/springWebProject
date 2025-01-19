@@ -41,7 +41,20 @@
                                 	</tr>
                                 </c:forEach>
                             </table>
-                            	${page}
+                            
+                            <form id="searchForm" action="/board/list" method="get">
+                            	<select name="type">
+                            		<option value="T" ${page.criteria.type eq 'T'?"selected":""}>TITLE</option>
+                            		<option value="C" ${page.criteria.type eq 'C'?"selected":""}>CONTENT</option>
+                            		<option value="W" ${page.criteria.type eq 'W'?"selected":""}>WRITER</option>
+                            	</select>
+                            	<input type="text" name="keyword" value="${page.criteria.keyword}">
+                            	<input type="hidden" name="type" value="${page.criteria.keyword}">
+                            	<input type="hidden" name="pageNum" value="${page.criteria.pageNum}">
+                            	<input type="hidden" name="amount" value="${page.criteria.amount}">
+                            	<button class="btn btn-default">SEARCH</button>
+                            </form>
+                            
                             <div class="pull-right">
                             	<ul class="pagination">
                             		<c:if test="${page.prev}"> 
@@ -131,6 +144,21 @@ $(document).ready(function(){
 		 actionForm.attr("action","/board/get");
 		 actionForm.submit();
 	 }); // move
+	 
+	 var searchForm = $("#searchForm")
+	 
+	 $("#searchForm button").on("click", function(e){
+		 
+		 if(!searchForm.find("input[name='keyword']").val()){
+			 alert("Please enter your search term");
+			 return false;
+		 }
+		
+		 searchForm.find("input[name='pageNum']").val("1");
+		 e.preventDefault();
+		 
+		 searchForm.submit();
+	 }); // searchForm
 	 
 	 
 }); //document

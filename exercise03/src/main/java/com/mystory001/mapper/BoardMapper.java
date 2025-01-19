@@ -15,12 +15,14 @@ public interface BoardMapper {
 	
 	public void insert(BoardVO boardVO);
 	
-	public void insertSelectKey(BoardVO boardVO);
+	public void insertSelectKey(BoardVO boardVO); 
 	
-	public BoardVO get(Integer bno);
+	public BoardVO get(Integer bno); 
 	
-	public int delete(Integer bno);
+	public int delete(Integer bno); 
 	
-	public int update(BoardVO boardVO);
+	public int update(BoardVO boardVO); 
+	
+	public int getTotalCount(Criteria criteria); // 전체 데이터의 개수 처리
 
 }

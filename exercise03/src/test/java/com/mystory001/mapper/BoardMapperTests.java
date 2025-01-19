@@ -104,5 +104,17 @@ public class BoardMapperTests {
 		list.forEach(boardVO -> log.info(boardVO));
 	}
 	
+	@Test
+	public void testSearch() {
+		log.info("BoardMapper testSearch().....................");
+		Criteria criteria = new Criteria();
+		criteria.setKeyword("update");
+		criteria.setType("TC");
+		
+		List<BoardVO> list = boardMapper.getListWithPaging(criteria);
+		
+		list.forEach(boardVO -> log.info(boardVO));
+	}
+	
 
 }

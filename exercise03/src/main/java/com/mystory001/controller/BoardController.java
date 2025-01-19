@@ -30,7 +30,7 @@ public class BoardController {
 	public void list(Model model, Criteria criteria) {
 		log.info("BoardController list()......................");
 		model.addAttribute("list", boardService.getList(criteria));
-		model.addAttribute("page", new PageDTO(criteria,123));
+		model.addAttribute("page", new PageDTO(criteria,boardService.getTotalCount(criteria)));
 	}
 	
 	@GetMapping("/insert")
@@ -46,17 +46,24 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+//	@GetMapping("/get")
+//	public void get() {
+//		log.info("BoardController get()...............");
+//		model.addAttribute("boardVO", boardService.get(bno));
+//	}
+
+	//	@GetMapping("/update")
+//	public void update() {
+//		log.info("BoardController update()...............");
+//		model.addAttribute("boardVO", boardService.get(bno));
+//	}
+
 	@GetMapping({"/get", "/update"})
 	public void get(@RequestParam("bno") Integer bno, Model model, @ModelAttribute("criteria") Criteria criteria) {
-		log.info("BoardController get() or update()....................");
+		log.info("BoardController get() || BoardController update()....................");
 		model.addAttribute("boardVO", boardService.get(bno));
 		log.info(bno);
 	}
-	
-//	@GetMapping("/update")
-//	public void update() {
-//		log.info("BoardController update()...............");
-//	}
 	
 	@PostMapping("/update")
 	public String update(BoardVO boardVO, RedirectAttributes redirectAttributes, @ModelAttribute("criteria") Criteria criteria) {
@@ -70,8 +77,11 @@ public class BoardController {
 		
 		redirectAttributes.addAttribute("pageNum", criteria.getPageNum());
 		redirectAttributes.addAttribute("amount", criteria.getAmount());
+		redirectAttributes.addAttribute("type", criteria.getType());
+		redirectAttributes.addAttribute("keyword", criteria.getKeyword());
 		
 		return "redirect:/board/list";
+//		return "redirect:/board/list" + criteria.getListLink();
 	}
 
 	@PostMapping("/delete")
@@ -84,8 +94,11 @@ public class BoardController {
 		
 		redirectAttributes.addAttribute("pageNum", criteria.getPageNum());
 		redirectAttributes.addAttribute("amount", criteria.getAmount());
+		redirectAttributes.addAttribute("type", criteria.getType());
+		redirectAttributes.addAttribute("keyword", criteria.getKeyword());
 		
-		return "redirect:/board/list";
+		return "redirect:/board/list?";
+//		return "redirect:/board/list?" + criteria.getListLink();
 	}
 	
 }

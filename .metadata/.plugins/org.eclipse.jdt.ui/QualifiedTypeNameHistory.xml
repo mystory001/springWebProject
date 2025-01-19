@@ -58,6 +58,6 @@
     <fullyQualifiedTypeName name="lombok.ToString"/>
     <fullyQualifiedTypeName name="com.mystory001.domain.PageDTO"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
-    <fullyQualifiedTypeName name="com.mystory001.domain.Criteria"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="com.mystory001.domain.Criteria"/>
 </qualifiedTypeNameHistroy>

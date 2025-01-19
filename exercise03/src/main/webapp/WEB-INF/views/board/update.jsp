@@ -16,9 +16,11 @@
                             update
                         </div>
                         <div class="panel-body">
-                        	<form action="/board/update" method="post" role="form" >
+                        	<form>
                             	<input type="hidden" name="pageNum" value= "<c:out value='${criteria.pageNum}' />">
                             	<input type="hidden" name="amount" value= "<c:out value='${criteria.amount}' />">
+                            	<input type="hidden" name="keyword" value= "<c:out value='${criteria.keyword}' />">
+                            	<input type="hidden" name="type" value= "<c:out value='${criteria.type}' />">
                             	<div class="form-group">
                             		<label>BNO</label>
                             		<input class="form-control" name="bno" value="<c:out value='${boardVO.bno}'/>" readonly>
@@ -49,24 +51,33 @@ $(document).ready(function(){
 	
 	var formObj = $("form");
 
-	$('.button').on("click", function(e){
+	$('.btn').on("click", function(e){
 		e.preventDefault();
 		
 		var operation = $(this).data("oper");
 		
 		console.log(operation);
-
-		if(operation == "list"){
+		
+		if(operation == 'list'){
 			formObj.attr("action", "/board/list").attr("method","get");
+			
 			var pageNumTag = $("input[name='pageNum']").clone();
 			var amountTag = $("input[name='amount']").clone();
-			formObj.empty();
-			formObj.append(pageNumTag);
-			formObj.append(amountTag);
+			var typeTag = $("input[name='type']").clone();
+			var keywordTag = $("input[name='keyword']").clone();
+			
+			form.Obj.append(pageNumTag);
+			form.Obj.append(amountTag);
+			form.Obj.append(typeTag);
+			form.Obj.append(keywordTag);
+			
+			formObj.submit();	
+		} else if(operation == "update"){
+			formObj.attr("action", "/board/update").attr("method","post");
 		} else if(operation == 'delete'){
 			formObj.attr("action", "/board/delete").attr("method","post");
-		}
-		formObj.submit();
+		}  
+			formObj.submit();
 	});
 		
 });
