@@ -1,0 +1,50 @@
+* 서버의 역할
+- 과거 서버의 데이터를 소비하는 주체가 '브라우저'로 제한적, 최근 앱이나 웹은 서버에서 제공하는 데이터를 소비
+- 순순하게 데이터에 대한 처리를 목적으로 하는 형태로 진화
+- 서버에서 전달하는 데이터를 이용해서 앱 혹은 브라우저 내부에서 별도의 방식을 통해 이를 소비하는 형태로 전환
+
+* URL, URI
+- URL(Uniform Resource Locator), URI(Uniform Resource Identifier)
+- URL은 URI의 하위 개념, URI는 자원의 식별자라는 의미로 사용
+- URL : 여기로 가면 원하는 것을 찾을 수 있음
+- URI : 원하는 것의 주소는 여기
+- URI의 I는 데이터베이스의 PK와 같은 의미로 사용
+
+* REST(Representational State Transfer)
+- 하나의 URI는 하나의 고유한 리소스를 대표하도록 설계된다는 개념에 전송방식을 결합해서 원하는 작업을 지정
+- URI + GET/POST/PUT/DELETE
+
+* REST와 관련한 어노테이션
+- @RestController : Controller가 REST 방식을 처리하기 위한 것임을 명시
+- @ResponseBody : JSP와 같은 뷰로 전달되는 것이 아닌 데이터 자체를 전달하기 위한 용도
+- @RequestBody : JSON 데이터를 원하는 타입으로 바인딩 처리
+- @PathVariable : URL 경로에 있는 값을 파라미터로 추출하려고 할 때 사용
+- @CrossOrigin : Ajax의 크로스 도메인 문제를 해결해주는 어노테이션
+
+* @RestController
+- 서버에서 전송하는 것이 순수한 데이터
+- 기존의 Controller에서 Model에 데이터를 담아서 JSP 등과 같은 뷰로 전달하는 방식이 아니고, 기존 Controller와 다르게 동작
+- 메서드의 리턴 타입으로 사용자가 정의한 클래스 타입을 사용할 수 있고, 이를 JSON이나 XML로 자동으로 처리할 수 있음
+
+* @RestController에서 파라미터
+- 기존의 @Controller에서 사용하던 일반적인 타입이나 사용자가 정의한 타입을 사용 → 몇 가지 어노테이션을 이용(@PathVariable, @RequestBody)
+
+* @PathVariable
+- http://localhost:8080/sample/{bno} 에서 {} 처리된 부분은 컨트롤러의 메서드에서 변수로 처리가 가능, @PathVariable은 {}의 이름을 처리할 때 사용
+- REST 방식에서는 URL 자체에 데이터를 식별할 수 있는 정보들을 표현하는 경우가 많으므로 다양한 방식으로 사용됨
+- @PathVariable을 적용할 때 {}를 이용해서 변수명을 지정하고, @PathVariable을 이용해서 지정된 이름의 변숫값을 얻을 수 있음. 값을 얻을 때에는 기본 자료형을 사용할 수 없음
+
+* @RequestBody
+- 전달된 요청(request)의 내용(body)을 이용해서 해당 파라미터의 타입으로 변환을 요구, 내부적으로 HttpMessageConverter 타입의 객체들을 이용해서 다양한 포맷의 입력 데이터를 변환
+- 대부분 JSON 데이터를 서버에 보내서 원하는 타입의 객체로 변환하는 용도로 사용(경우에 따라서는 원하는 포맷의 데이터를 보내고, 원하는 타입으로 사용하기도 함)
+- 요청(request)한 내용(body)을 처리하기 때문에 파라미터 전달방식을 사용할 수 없기 때문에 PostMapping을 사용해야함 → URI로 접속 불가
+
+* 다양한 전송방식
+- REST 방식의 데이터 교환에서는 GET/POST 외에 다양한 방식으로 데이터를 전달
+- 작업-전송방식 : Create - POST, Read - GET, Update - PUT, Delete - DELETE
+
+
+
+
+
+
