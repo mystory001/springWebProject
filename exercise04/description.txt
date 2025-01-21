@@ -43,7 +43,7 @@
 - REST 방식의 데이터 교환에서는 GET/POST 외에 다양한 방식으로 데이터를 전달
 - 작업-전송방식 : Create - POST, Read - GET, Update - PUT, Delete - DELETE
 
-
+* 
 
 
 

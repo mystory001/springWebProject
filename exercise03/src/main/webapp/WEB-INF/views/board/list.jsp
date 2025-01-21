@@ -49,7 +49,6 @@
                             		<option value="W" ${page.criteria.type eq 'W'?"selected":""}>WRITER</option>
                             	</select>
                             	<input type="text" name="keyword" value="${page.criteria.keyword}">
-                            	<input type="hidden" name="type" value="${page.criteria.keyword}">
                             	<input type="hidden" name="pageNum" value="${page.criteria.pageNum}">
                             	<input type="hidden" name="amount" value="${page.criteria.amount}">
                             	<button class="btn btn-default">SEARCH</button>
@@ -73,6 +72,8 @@
                             <form id="actionForm" action="/board/list" method="get">
                             	<input type="hidden" name="pageNum" value= "${page.criteria.pageNum}">
                             	<input type="hidden" name="amount" value= "${page.criteria.amount}">
+                            	<input type="hidden" name="type" value= "<c:out value='${page.criteria.type}'/>">
+                            	<input type="hidden" name="keyword" value= "<c:out value='${page.criteria.keyword}'/>">
                             </form>
                             
                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
