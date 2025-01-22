@@ -10,6 +10,7 @@
 - 교재 : 코드로 배우는 스프링 웹 프로젝트(개정판)
 
 - 학습 내용
+250122 : Ajax 댓글 처리
 250121 : Ajax 댓글 처리
 250120 : REST 방식
 250119 : 검색
@@ -30,4 +31,4 @@
 excercise01 : 스프링 개발 환경 구축
 excercise02 : 스프링 MVC 설정
 excercise03 : 기본적인 웹 게시물 관리
-excercise03 : REST 방식과 AJAX 댓글 처리
+excercise04 : REST 방식과 AJAX 댓글 처리

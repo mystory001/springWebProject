@@ -85,7 +85,7 @@ alter table reply add constraint reply_fk foreign key (bno) references board(bno
 					화면 내에서 JavaScript 처리를 하다보면 코드가 섞여 유지보수 하기 힘든 코드를 만드는 경우가 많음 → 하나의 모듈처럼 구성하는 방식을 이용 → JavaScript에서 가장 많이 사용하는 패턴 중 하나인 모듈 패턴
 					※모듈 패턴 : 관련 있는 함수들을 하나의 모듈처럼 묶음으로 구성하는 것을 의미
 
-
+* 
 
 
 

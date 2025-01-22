@@ -33,7 +33,6 @@ public class ReplyController {
 	public ResponseEntity<String> create(@RequestBody ReplyVO replyVO){
 		log.info("ReplyController create()...............");
 		log.info("replyVO = " + replyVO);
-		log.info("댓글 등록 개수 : "+ replyService.insert(replyVO));
 		
 		return replyService.insert(replyVO) == 1 ? new ResponseEntity<String>("success", HttpStatus.OK) : new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

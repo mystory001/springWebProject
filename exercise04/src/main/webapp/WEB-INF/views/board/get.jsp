@@ -49,19 +49,55 @@
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 
 <script>
-console.log("==============");
-console.log("Javascript Test");
-var bnoValue = "<c:out value='${boardVO.bno}'/>";
 
-//add test
-replyService.add(
-	{reply : "Javascript Test", replyer : "Javascript Tester", bno : bnoValue},
-	function(result){
-		alert("result : "+ result);
-	}
-);
+$(function() {
+	console.log("==============");
+	console.log("Javascript Test");
+	var bnoValue = "<c:out value='${boardVO.bno}'/>";
+	console.log(bnoValue);
+	
+	console.log("replyService object:", replyService);
+	console.log("replyService.getListWithPaging function:", replyService.getListWithPaging);
+	
+	// add test
+// 	 replyService.add(
+// 		{reply:"Javascript TEST", replyer:"Javascript tester", bno:bnoValue},
+// 		function(result){
+// 			alert("RESULT: " + result);
+// 		}
+// 	); 
+	
+	// getList test
+	replyService.getListWithPaging({bno:bnoValue, page:1}, function(list){
+		for(var i = 0, len = list.length||0; i < len; i++){
+			console.log(list[i]);
+		}
+	}); 
 
-
+	
+	// delete test
+// 	replyService.drop(70, function(count) {
+// 		console.log(count);
+// 		if(count === "success"){
+// 			alert("delete");
+// 		}
+// 		}, 
+// 		function(err){
+// 			alert('error');
+// 	});
+	//
+	
+	replyService.update({
+		rno : 5,
+		bno : bnoValue,
+		reply : "수정한 댓글......."
+	}, function(result){
+		alert("update success");
+	});
+	
+	
+	//
+});
 </script>
 
 <script type="text/javascript">
@@ -81,8 +117,6 @@ $(document).ready(function(){
 	
 	
 }); // $(document).ready(function()
-
 </script>
 
-        
 <%@ include file="inc/bottom.jsp" %>
