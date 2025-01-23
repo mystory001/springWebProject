@@ -1,322 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Wed, 22 Jan 2025 00:33:10 GMT</lastBuildDate><item><title><![CDATA[Spring Milestones to Maven central]]></title><link>https://spring.io/blog/2025/01/21/milestones-to-central</link><guid isPermaLink="true">https://spring.io/blog/2025/01/21/milestones-to-central</guid><dc:creator><![CDATA[mminella]]></dc:creator><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;TL;DR;&lt;/strong&gt; The Spring portfolio will begin releasing its milestones and release candidates to Maven Central starting with the releases related to the &lt;a href=&quot;https://spring.io/blog/2024/10/01/from-spring-framework-6-2-to-7-0&quot;&gt;major versions due out in November&lt;/a&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Spring]]></title><description><![CDATA[Level up your Java code and explore what Spring can do for you.]]></description><link>https://spring.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 23 Jan 2025 00:32:34 GMT</lastBuildDate><item><title><![CDATA[Spring Integration 6.5 Milestone 1 Available]]></title><link>https://spring.io/blog/2025/01/22/spring-integration-6-5-M1-released</link><guid isPermaLink="true">https://spring.io/blog/2025/01/22/spring-integration-6-5-M1-released</guid><dc:creator><![CDATA[artembilan]]></dc:creator><pubDate>Wed, 22 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who contributed, I am pleased to announce the firs Milestone of Spring Integration &lt;code&gt;6.5.0&lt;/code&gt; generation.&lt;/p&gt;
+&lt;p&gt;In addition to dependency upgrades for their latest major/minor versions, this Milestone includes removals for previous deprecations.&lt;/p&gt;
+&lt;p&gt;Some notable changes so far are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The Java DSL &lt;code&gt;controlBus()&lt;/code&gt; operator is restored from the deprecated state, but now it does exactly the same what previously introduced &lt;code&gt;controlBusOnRegistry()&lt;/code&gt;, which is deprecated now;&lt;/li&gt;
+&lt;li&gt;Previously, if a &lt;code&gt;MessageGroupProcessor&lt;/code&gt; returns a collection of payloads, the &lt;code&gt;AbstractCorrelatingMessageHandler&lt;/code&gt; has failed with the &lt;code&gt;IllegalArgumentException&lt;/code&gt; stating that only collection of messages is possible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;From now on such a restriction is eliminated and returned collection of payloads is emitted as a single reply message from the aggregator;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;code&gt;AbstractMessageGroupStore&lt;/code&gt; implementations now can be configured with a &lt;code&gt;LockRegistry&lt;/code&gt;, which is used for all the non-atomic message store operations;&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;SourcePollingChannelAdapter&lt;/code&gt; now can start a Mircometer observation;&lt;/li&gt;
+&lt;li&gt;A &lt;code&gt;discardIndividuallyOnExpiry&lt;/code&gt; option for the &lt;code&gt;AbstractCorrelatingMessageHandler&lt;/code&gt; can be set to &lt;code&gt;false&lt;/code&gt; to emit the whole expired group as a single message into the discard channel;&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;org.eclipse.paho.client.mqttv3&lt;/code&gt; dependency for the &lt;code&gt;spring-integration-mqtt&lt;/code&gt; module is now &lt;code&gt;optional&lt;/code&gt; - not everyone works with MQTT v3 protocol; the v5 might be a preference to choose.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See &lt;a href=&quot;https://docs.spring.io/spring-integration/reference/6.5/whats-new.html&quot;&gt;What&apos;s New in 6.5&lt;/a&gt; for more details.&lt;/p&gt;
+&lt;p&gt;Also a &lt;a href=&quot;https://github.com/spring-projects/spring-integration/wiki/Spring-Integration-6.4-to-6.5-Migration-Guide&quot;&gt;Migration Guide&lt;/a&gt; contains some breaking changes in this new version.&lt;/p&gt;
+&lt;p&gt;We also will start looking into Spring Integration &lt;code&gt;7.0&lt;/code&gt;  based on Spring Framework &lt;code&gt;7.0&lt;/code&gt;.
+Don&apos;t hesitate to reach us out in GitHub issues for the the project with any feedback!&lt;/p&gt;
+&lt;p&gt;Cheers,?&lt;br&gt;
+Artem&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://projects.spring.io/spring-integration/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-integration/issues&quot;&gt;GitHub Issues&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-integration/blob/main/CONTRIBUTING.adoc&quot;&gt;Contributing&lt;/a&gt; | &lt;a href=&quot;http://stackoverflow.com/questions/tagged/spring-integration&quot;&gt;Help&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring for Apache Kafka 3.3.2 is available]]></title><link>https://spring.io/blog/2025/01/22/spring-kafka-3</link><guid isPermaLink="true">https://spring.io/blog/2025/01/22/spring-kafka-3</guid><dc:creator><![CDATA[sobychacko]]></dc:creator><pubDate>Wed, 22 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We are pleased to announce the release of Spring for Apache Kafka version &lt;code&gt;3.3.2&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;release-notes&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#release-notes&quot; aria-label=&quot;release notes permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Release Notes&lt;/h4&gt;
+&lt;p&gt;For details about what&apos;s included in this release, please refer to the release notes:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-kafka/releases/tag/v3.3.2&quot;&gt;https://github.com/spring-projects/spring-kafka/releases/tag/v3.3.2&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;kafka-client-39x-compatibility&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#kafka-client-39x-compatibility&quot; aria-label=&quot;kafka client 39x compatibility permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Kafka Client 3.9.x compatibility&lt;/h4&gt;
+&lt;p&gt;This release supports Kafka Client versions 3.8.x and 3.9.x.
+If your application requires Kafka Client 3.9.x, you&apos;ll need to manually upgrade the client version.
+For instructions on overriding Kafka client versions in Spring Boot, please refer to our &lt;a href=&quot;https://docs.spring.io/spring-kafka/reference/appendix/override-boot-dependencies.html&quot;&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h4 id=&quot;spring-boot-integration&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-boot-integration&quot; aria-label=&quot;spring boot integration permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring Boot Integration&lt;/h4&gt;
+&lt;p&gt;The &lt;code&gt;3.3.2&lt;/code&gt; release will be incorporated into the upcoming Spring Boot &lt;code&gt;3.4.2&lt;/code&gt;.
+Additionally, this version will be included in the Spring Boot &lt;code&gt;3.5.x&lt;/code&gt; line and will ship with the upcoming Spring Boot &lt;code&gt;3.5.0-M1&lt;/code&gt; release.&lt;/p&gt;
+&lt;h4 id=&quot;looking-ahead-to-the-next-major-version-of-spring-for-apache-kafka&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#looking-ahead-to-the-next-major-version-of-spring-for-apache-kafka&quot; aria-label=&quot;looking ahead to the next major version of spring for apache kafka permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Looking Ahead to the Next Major Version of Spring for Apache Kafka&lt;/h4&gt;
+&lt;p&gt;Development of Spring for Apache Kafka 4.0.x will commence in the near future.
+This major version will be built on Kafka Client 4.0.x, Spring Framework 7.0.x and will be compatible with Spring Boot 4.0.x.
+We encourage community involvement through feature requests, bug reports, and general feedback.&lt;/p&gt;
+&lt;h4 id=&quot;staying-in-touch-with-the-project&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#staying-in-touch-with-the-project&quot; aria-label=&quot;staying in touch with the project permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Staying in touch with the project&lt;/h4&gt;
+&lt;p&gt;You can engage with the project through these channels:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-kafka&quot;&gt;GitHub&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-kafka/issues&quot;&gt;Issues&lt;/a&gt; | &lt;a href=&quot;https://docs.spring.io/spring-kafka/reference&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://stackoverflow.com/tags/spring-kafka&quot;&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring AMQP 3.2.2 Available]]></title><link>https://spring.io/blog/2025/01/22/spring-amqp-3-2-2-available</link><guid isPermaLink="true">https://spring.io/blog/2025/01/22/spring-amqp-3-2-2-available</guid><dc:creator><![CDATA[artembilan]]></dc:creator><pubDate>Wed, 22 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who contributed, I am pleased to announce the &lt;code&gt;3.2.2&lt;/code&gt; patch release for Spring AMQP.&lt;/p&gt;
+&lt;p&gt;This version includes some bug fixes and dependency upgrades.&lt;/p&gt;
+&lt;p&gt;See more info in the &lt;a href=&quot;https://github.com/spring-projects/spring-amqp/releases/tag/v3.2.2&quot;&gt;Release Notes&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Many thanks to community for feedback and prompt fixes!&lt;/p&gt;
+&lt;p&gt;Now we are switching to &lt;code&gt;4.0&lt;/code&gt; generation which is going to be based on Spring Framework &lt;code&gt;7.0&lt;/code&gt;.
+It will have some long-standing breaking changes, incorporate a new null-safety from Spring Framework based on JSpecify.
+We also are looking for including a new &lt;code&gt;spring-rabbit-amqp10&lt;/code&gt; module based on the &lt;a href=&quot;https://github.com/rabbitmq/rabbitmq-amqp-java-client&quot;&gt;&lt;code&gt;com.rabbitmq.client:amqp-client&lt;/code&gt;&lt;/a&gt; library for AMQP protocol &lt;code&gt;1.0&lt;/code&gt;.
+Don&apos;t hasitate to reach us out in GitHub issues for the project!&lt;/p&gt;
+&lt;p&gt;Cheers,?&lt;br&gt;
+Artem&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://projects.spring.io/spring-amqp/&quot;&gt;Project Page&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-amqp/issues&quot;&gt;GitHub Issues&lt;/a&gt; | &lt;a href=&quot;https://github.com/spring-projects/spring-amqp/blob/main/CONTRIBUTING.adoc&quot;&gt;Contributing&lt;/a&gt; | &lt;a href=&quot;http://stackoverflow.com/questions/tagged/spring-amqp&quot;&gt;Help&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Spring Milestones to Maven Central]]></title><link>https://spring.io/blog/2025/01/21/milestones-to-central</link><guid isPermaLink="true">https://spring.io/blog/2025/01/21/milestones-to-central</guid><dc:creator><![CDATA[mminella]]></dc:creator><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;TL;DR;&lt;/strong&gt; The Spring portfolio will begin releasing its milestones and release candidates to Maven Central starting with the releases related to the &lt;a href=&quot;https://spring.io/blog/2024/10/01/from-spring-framework-6-2-to-7-0&quot;&gt;major versions due out in November&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;As we enter the new year, we look forward to many new opportunities for the Spring ecosystem. We see JDK 25 coming in the fall. We see both minor versions of the entire portfolio and a new major version coming out this year with a long list of new capabilities. And we see Spring AI going GA ushering in a new class of workloads for enterprise applications, bringing agentic AI to the enterprise through programming paradigms that are already familiar to millions of developers. With all of that, there is another thing to look forward to this year. That is a change in how we do our early releases.&lt;/p&gt;
 &lt;p&gt;Historically, we have made regular milestone and release candidate releases during the development of new feature branches. This was for a couple reasons, it allows for you to provide feedback on the changes as well as evaluate the impact our changes make on your software. We also hope that it enables you to develop your extensions and addons alongside us. Up to now, we have released those early versions to &lt;a href=&quot;https://repo.spring.io&quot;&gt;https://repo.spring.io&lt;/a&gt; which presents a few limitations we are now looking to address.&lt;/p&gt;
 &lt;p&gt;First, as enterprises look to secure their software supply chains, the ability to access all but a few core code repositories becomes more limited. We have received feedback on multiple occasions where you have told us that you¡¯d be willing to try out milestone versions, but cannot access them due to limitations within your organization preventing you from accessing repositories other than Maven Central or an internal repository.&lt;/p&gt;
 &lt;p&gt;Second, we take full advantage of the availability of early milestone releases in our ecosystem, grabbing early development releases, upgrading our dependencies, running CI against them all in the effort to be as proactive as we can about incorporating updates where we can. However, virtually all of those early milestones we consume are available via Maven Central. This makes it easy for us to consume those updates, but we do not return the favor to all of you.  Maven Central has the rule that anything in Central must have all of its dependencies available in Central. If a library wanted to build a Spring integration or extension alongside our early releases, they couldn¡¯t if they wanted to release their versions to Maven Central because we were not releasing our early releases to Maven Central.&lt;/p&gt;
-&lt;p&gt;We want to address those issues. And so we are announcing today that starting with the early releases that align with the major versions of the portfolio later this year (Spring Framework 7, Spring Boot 4, etc) we will begin to release our milestone and release candidate releases to Maven Central in addition to &lt;a href=&quot;https://repo.spring.io&quot;&gt;https://repo.spring.io&lt;/a&gt;. Our goal is to provide access to as many as possible to those early releases and enable every opportunity for the ecosystem to evolve along with us. While we make this transition, while Spring Framework 7.0.0.M1 is due out this month and will be the first release to Maven Central for a milestone release, milestones and release candidates that align with the minor version feature releases in May (Spring Boot 3.5, etc) will continue to only be available via &lt;a href=&quot;https://repo.spring.io&quot;&gt;https://repo.spring.io&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We continue to look for new ways to make things easier for you to consume Spring and be a part of the process that delivers the capabilities you know and love. Our change from a &lt;a href=&quot;https://spring.io/blog/2025/01/06/hello-dco-goodbye-cla-simplifying-contributions-to-spring&quot;&gt;CLA to the DCO&lt;/a&gt; is one recent example and we hope that this will represent another way of simplifying the way you work with Spring.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Building Effective Agents with Spring AI (Part 1)]]></title><link>https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns</link><guid isPermaLink="true">https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns</guid><dc:creator><![CDATA[tzolov]]></dc:creator><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In a recent research publication: &lt;a href=&quot;https://www.anthropic.com/research/building-effective-agents&quot;&gt;Building effective agents&lt;/a&gt;, Anthropic shared valuable insights about building effective Large Language Model (LLM) agents. What makes this research particularly interesting is its emphasis on simplicity and composability over complex frameworks. Let&apos;s explore how these principles translate into practical implementations using &lt;a href=&quot;https://docs.spring.io/spring-ai/reference/index.html&quot;&gt;Spring AI&lt;/a&gt;.&lt;/p&gt;
-&lt;img src=&quot;https://raw.githubusercontent.com/spring-io/spring-io-static/refs/heads/main/blog/tzolov/spring-ai-agentic-systems.jpg&quot; alt=&quot;Agent Systems&quot; width=&quot;350&quot;&gt;
-&lt;p&gt;While the pattern descriptions and diagrams are sourced from Anthropic&apos;s original publication, we&apos;ll focus on how to implement these patterns using Spring AI&apos;s features for model portability and structured output. We recommend reading the original paper first.&lt;/p&gt;
-&lt;p&gt;The &lt;a href=&quot;https://github.com/spring-projects/spring-ai-examples/tree/main/agentic-patterns&quot;&gt;agentic-patterns&lt;/a&gt; project implements the patterns discussed below.&lt;/p&gt;
-&lt;h2 id=&quot;agentic-systems&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#agentic-systems&quot; aria-label=&quot;agentic systems permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Agentic Systems&lt;/h2&gt;
-&lt;p&gt;The research publication makes an important architectural distinction between two types of agentic systems:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Workflows&lt;/strong&gt;: Systems where LLMs and tools are orchestrated through predefined code paths (e.g., prescriptive system)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Agents&lt;/strong&gt;: Systems where LLMs dynamically direct their own processes and tool usage&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The key insight is that while fully autonomous agents might seem appealing, workflows often provide better predictability and consistency for well-defined tasks. This aligns perfectly with enterprise requirements where reliability and maintainability are crucial.&lt;/p&gt;
-&lt;p&gt;Let&apos;s examine how Spring AI implements these concepts through five fundamental patterns, each serving specific use cases:&lt;/p&gt;
-&lt;h3 id=&quot;1-chain-workflow&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#1-chain-workflow&quot; aria-label=&quot;1 chain workflow permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;1. &lt;a href=&quot;https://github.com/spring-projects/spring-ai-examples/tree/main/agentic-patterns/chain-workflow&quot;&gt;Chain Workflow&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The Chain Workflow pattern exemplifies the principle of breaking down complex tasks into simpler, more manageable steps.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F7418719e3dab222dccb379b8879e1dc08ad34c78-2401x1000.png&amp;#x26;w=3840&amp;#x26;q=75&quot; alt=&quot;Prompt Chaining Workflow&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;When to Use:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Tasks with clear sequential steps&lt;/li&gt;
-&lt;li&gt;When you want to trade latency for higher accuracy&lt;/li&gt;
-&lt;li&gt;When each step builds on the previous step&apos;s output&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here&apos;s a practical example from Spring AI&apos;s implementation:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class ChainWorkflow {
-    private final ChatClient chatClient;
-    private final String[] systemPrompts;
-
-    // Processes input through a series of prompts, where each step&apos;s output
-    // becomes input for the next step in the chain.     
-    public String chain(String userInput) {
-        String response = userInput;
-        for (String prompt : systemPrompts) {
-            // Combine the system prompt with previous response
-            String input = String.format(&quot;{%s}\n {%s}&quot;, prompt, response);
-            // Process through the LLM and capture output
-            response = chatClient.prompt(input).call().content();
-        }
-        return response;
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This implementation demonstrates several key principles:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Each step has a focused responsibility&lt;/li&gt;
-&lt;li&gt;Output from one step becomes input for the next&lt;/li&gt;
-&lt;li&gt;The chain is easily extensible and maintainable&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;2-parallelization-workflow&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#2-parallelization-workflow&quot; aria-label=&quot;2 parallelization workflow permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2. &lt;a href=&quot;https://github.com/spring-projects/spring-ai-examples/tree/main/agentic-patterns/parallelization-worflow&quot;&gt;Parallelization Workflow&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;LLMs can work simultaneously on tasks and have their outputs aggregated programmatically. The parallelization workflow manifests in two key variations:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Sectioning&lt;/strong&gt;: Breaking tasks into independent subtasks for parallel processing&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Voting&lt;/strong&gt;: Running multiple instances of the same task for consensus&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F406bb032ca007fd1624f261af717d70e6ca86286-2401x1000.png&amp;#x26;w=3840&amp;#x26;q=75&quot; alt=&quot;Parallelization Workflow&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;When to Use:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Processing large volumes of similar but independent items&lt;/li&gt;
-&lt;li&gt;Tasks requiring multiple independent perspectives&lt;/li&gt;
-&lt;li&gt;When processing time is critical and tasks are parallelizable&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The Parallelization Workflow pattern demonstrates efficient concurrent processing of multiple Large Language Model (LLM) operations. This pattern is particularly useful for scenarios requiring parallel execution of LLM calls with automated output aggregation.&lt;/p&gt;
-&lt;p&gt;Here&apos;s a basic example of using the Parallelization Workflow:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;List&amp;#x3C;String&gt; parallelResponse = new ParallelizationWorkflow(chatClient)
-    .parallel(
-        &quot;Analyze how market changes will impact this stakeholder group.&quot;,
-        List.of(
-            &quot;Customers: ...&quot;,
-            &quot;Employees: ...&quot;,
-            &quot;Investors: ...&quot;,
-            &quot;Suppliers: ...&quot;
-        ),
-        4
-    );
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This example demonstrates parallel processing of stakeholder analysis, where each stakeholder group is analyzed concurrently.&lt;/p&gt;
-&lt;h3 id=&quot;3-routing-workflow&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#3-routing-workflow&quot; aria-label=&quot;3 routing workflow permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;3. &lt;a href=&quot;https://github.com/spring-projects/spring-ai-examples/tree/main/agentic-patterns/routing-workflow&quot;&gt;Routing Workflow&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The Routing pattern implements intelligent task distribution, enabling specialized handling for different types of input.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F5c0c0e9fe4def0b584c04d37849941da55e5e71c-2401x1000.png&amp;#x26;w=3840&amp;#x26;q=75&quot; alt=&quot;Routing Workflow&quot;&gt;&lt;/p&gt;
-&lt;p&gt;This pattern is designed for complex tasks where different types of inputs are better handled by specialized processes. It uses an LLM to analyze input content and route it to the most appropriate specialized prompt or handler.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;When to Use:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Complex tasks with distinct categories of input&lt;/li&gt;
-&lt;li&gt;When different inputs require specialized processing&lt;/li&gt;
-&lt;li&gt;When classification can be handled accurately&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Here&apos;s a basic example of using the Routing Workflow:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;@Autowired
-private ChatClient chatClient;
-
-// Create the workflow
-RoutingWorkflow workflow = new RoutingWorkflow(chatClient);
-
-// Define specialized prompts for different types of input
-Map&amp;#x3C;String, String&gt; routes = Map.of(
-    &quot;billing&quot;, &quot;You are a billing specialist. Help resolve billing issues...&quot;,
-    &quot;technical&quot;, &quot;You are a technical support engineer. Help solve technical problems...&quot;,
-    &quot;general&quot;, &quot;You are a customer service representative. Help with general inquiries...&quot;
-);
-
-// Process input
-String input = &quot;My account was charged twice last week&quot;;
-String response = workflow.route(input, routes);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;4-orchestrator-workers&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#4-orchestrator-workers&quot; aria-label=&quot;4 orchestrator workers permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;4. &lt;a href=&quot;https://github.com/spring-projects/spring-ai-examples/tree/main/agentic-patterns/orchestrator-workers-workflow&quot;&gt;Orchestrator-Workers&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;This pattern demonstrates how to implement more complex agent-like behavior while maintaining control:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;A central LLM orchestrates task decomposition&lt;/li&gt;
-&lt;li&gt;Specialized workers handle specific subtasks&lt;/li&gt;
-&lt;li&gt;Clear boundaries maintain system reliability&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F8985fc683fae4780fb34eab1365ab78c7e51bc8e-2401x1000.png&amp;#x26;w=3840&amp;#x26;q=75&quot; alt=&quot;Orchestration Workflow&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;When to Use:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Complex tasks where subtasks can&apos;t be predicted upfront&lt;/li&gt;
-&lt;li&gt;Tasks requiring different approaches or perspectives&lt;/li&gt;
-&lt;li&gt;Situations needing adaptive problem-solving&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The implementation uses Spring AI&apos;s ChatClient for LLM interactions and consists of:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class OrchestratorWorkersWorkflow {
-    public WorkerResponse process(String taskDescription) {
-        // 1. Orchestrator analyzes task and determines subtasks
-        OrchestratorResponse orchestratorResponse = // ...
-
-        // 2. Workers process subtasks in parallel
-        List&amp;#x3C;String&gt; workerResponses = // ...
-
-        // 3. Results are combined into final response
-        return new WorkerResponse(/*...*/);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;usage-example&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#usage-example&quot; aria-label=&quot;usage example permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Usage Example:&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;ChatClient chatClient = // ... initialize chat client
-OrchestratorWorkersWorkflow workflow = new OrchestratorWorkersWorkflow(chatClient);
-
-// Process a task
-WorkerResponse response = workflow.process(
-    &quot;Generate both technical and user-friendly documentation for a REST API endpoint&quot;
-);
-
-// Access results
-System.out.println(&quot;Analysis: &quot; + response.analysis());
-System.out.println(&quot;Worker Outputs: &quot; + response.workerResponses());
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;5-evaluator-optimizer&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#5-evaluator-optimizer&quot; aria-label=&quot;5 evaluator optimizer permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;5. &lt;a href=&quot;https://github.com/spring-projects/spring-ai-examples/tree/main/agentic-patterns/evaluator-optimizer-workflow&quot;&gt;Evaluator-Optimizer&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;The Evaluator-Optimizer pattern implements a dual-LLM process where one model generates responses while another provides evaluation and feedback in an iterative loop, similar to a human writer&apos;s refinement process. The pattern consists of two main components:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Generator LLM&lt;/strong&gt;: Produces initial responses and refines them based on feedback&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Evaluator LLM&lt;/strong&gt;: Analyzes responses and provides detailed feedback for improvement&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F14f51e6406ccb29e695da48b17017e899a6119c7-2401x1000.png&amp;#x26;w=3840&amp;#x26;q=75&quot; alt=&quot;Evaluator-Optimizer Workflow&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;When to Use:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Clear evaluation criteria exist&lt;/li&gt;
-&lt;li&gt;Iterative refinement provides measurable value&lt;/li&gt;
-&lt;li&gt;Tasks benefit from multiple rounds of critique&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The implementation uses Spring AI&apos;s ChatClient for LLM interactions and consists of:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;public class EvaluatorOptimizerWorkflow {
-    public RefinedResponse loop(String task) {
-        // 1. Generate initial solution
-        Generation generation = generate(task, context);
-        
-        // 2. Evaluate the solution
-        EvaluationResponse evaluation = evaluate(generation.response(), task);
-        
-        // 3. If PASS, return solution
-        // 4. If NEEDS_IMPROVEMENT, incorporate feedback and generate new solution
-        // 5. Repeat until satisfactory
-        return new RefinedResponse(finalSolution, chainOfThought);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;usage-example-1&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#usage-example-1&quot; aria-label=&quot;usage example 1 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Usage Example:&lt;/h4&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;ChatClient chatClient = // ... initialize chat client
-EvaluatorOptimizerWorkflow workflow = new EvaluatorOptimizerWorkflow(chatClient);
-
-// Process a task
-RefinedResponse response = workflow.loop(
-    &quot;Create a Java class implementing a thread-safe counter&quot;
-);
-
-// Access results
-System.out.println(&quot;Final Solution: &quot; + response.solution());
-System.out.println(&quot;Evolution: &quot; + response.chainOfThought());
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;spring-ais-implementation-advantages&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#spring-ais-implementation-advantages&quot; aria-label=&quot;spring ais implementation advantages permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Spring AI&apos;s Implementation Advantages&lt;/h2&gt;
-&lt;p&gt;Spring AI&apos;s implementation of these patterns offers several benefits that align with Anthropic&apos;s recommendations:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-ai/reference/api/chat/comparison.html&quot;&gt;Model Portability&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;#x3C;!-- Easy model switching through dependencies --&gt;
-&amp;#x3C;dependency&gt;
-    &amp;#x3C;groupId&gt;org.springframework.ai&amp;#x3C;/groupId&gt;
-    &amp;#x3C;artifactId&gt;spring-ai-openai-spring-boot-starter&amp;#x3C;/artifactId&gt;
-&amp;#x3C;/dependency&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-ai/reference/api/structured-output-converter.html&quot;&gt;Structured Output&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&quot;language-java&quot;&gt;// Type-safe handling of LLM responses
-EvaluationResponse response = chatClient.prompt(prompt)
-    .call()
-    .entity(EvaluationResponse.class);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&quot;3&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;https://docs.spring.io/spring-ai/reference/api/chatclient.html&quot;&gt;Consistent API&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;Uniform interface across different LLM providers&lt;/li&gt;
-&lt;li&gt;Built-in error handling and retries&lt;/li&gt;
-&lt;li&gt;Flexible prompt management&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;best-practices-and-recommendations&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#best-practices-and-recommendations&quot; aria-label=&quot;best practices and recommendations permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Best Practices and Recommendations&lt;/h2&gt;
-&lt;p&gt;Based on both Anthropic&apos;s research and Spring AI&apos;s implementations, here are key recommendations for building effective LLM-based systems:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Start Simple&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Begin with basic workflows before adding complexity&lt;/li&gt;
-&lt;li&gt;Use the simplest pattern that meets your requirements&lt;/li&gt;
-&lt;li&gt;Add sophistication only when needed&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Design for Reliability&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Implement clear error handling&lt;/li&gt;
-&lt;li&gt;Use type-safe responses where possible&lt;/li&gt;
-&lt;li&gt;Build in validation at each step&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Consider Trade-offs&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Balance latency vs. accuracy&lt;/li&gt;
-&lt;li&gt;Evaluate when to use parallel processing&lt;/li&gt;
-&lt;li&gt;Choose between fixed workflows and dynamic agents&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;future-work&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#future-work&quot; aria-label=&quot;future work permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Future Work&lt;/h2&gt;
-&lt;p&gt;In Part 2 of this series, we&apos;ll explore how to build more advanced Agents that combine these foundational patterns with sophisticated features:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Pattern Composition&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Combining multiple patterns to create more powerful workflows&lt;/li&gt;
-&lt;li&gt;Building hybrid systems that leverage the strengths of each pattern&lt;/li&gt;
-&lt;li&gt;Creating flexible architectures that can adapt to changing requirements&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Advanced Agent Memory Management&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Implementing persistent memory across conversations&lt;/li&gt;
-&lt;li&gt;Managing context windows efficiently&lt;/li&gt;
-&lt;li&gt;Developing strategies for long-term knowledge retention&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Tools and Model-Context Protocol (MCP) Integration&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Leveraging external tools through standardized interfaces&lt;/li&gt;
-&lt;li&gt;Implementing MCP for enhanced model interactions&lt;/li&gt;
-&lt;li&gt;Building extensible agent architectures&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Stay tuned for detailed implementations and best practices for these advanced features.&lt;/p&gt;
-&lt;h2 id=&quot;tanzu-gen-ai-solutions&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#tanzu-gen-ai-solutions&quot; aria-label=&quot;tanzu gen ai solutions permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Tanzu Gen AI Solutions&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://blogs.vmware.com/tanzu/broadcom-announces-the-general-availability-of-vmware-tanzu-platform-10-making-it-easier-for-customers-to-build-and-launch-new-applications-in-the-private-cloud/&quot;&gt;VMware Tanzu Platform 10&lt;/a&gt; Tanzu AI Server, powered by Spring AI provides:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Enterprise-Grade AI Deployment&lt;/strong&gt;: Production-ready solution for deploying AI applications within your VMware Tanzu environment&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Simplified Model Access&lt;/strong&gt;: Streamlined access to Amazon Bedrock Nova models through a unified interface&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Security and Governance&lt;/strong&gt;: Enterprise-level security controls and governance features&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Scalable Infrastructure&lt;/strong&gt;: Built on Spring AI, the integration supports scalable deployment of AI applications while maintaining high performance&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For more information about deploying AI applications with Tanzu AI Server, visit the &lt;a href=&quot;https://www.vmware.com/solutions/app-platform/ai&quot;&gt;VMware Tanzu AI documentation&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;conclusion&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#conclusion&quot; aria-label=&quot;conclusion permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;The combination of Anthropic&apos;s research insights and Spring AI&apos;s practical implementations provides a powerful framework for building effective LLM-based systems. By following these patterns and principles, developers can create robust, maintainable, and effective AI applications that deliver real value while avoiding unnecessary complexity.&lt;/p&gt;
-&lt;p&gt;The key is to remember that sometimes the simplest solution is the most effective. Start with basic patterns, understand your use case thoroughly, and only add complexity when it demonstrably improves your system&apos;s performance or capabilities.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[This Week in Spring - January 21st, 2025]]></title><link>https://spring.io/blog/2025/01/21/this-week-in-spring-january-21st-2025</link><guid isPermaLink="true">https://spring.io/blog/2025/01/21/this-week-in-spring-january-21st-2025</guid><dc:creator><![CDATA[joshlong]]></dc:creator><pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Hi, Spring fans! Welcome to another rip-roaring installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! It&apos;s time to dive into this week&apos;s wondrous roundup!&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Good news, everybody! &lt;a href=&quot;https://github.com/awspring/spring-cloud-aws/releases/tag/v3.3.0&quot;&gt;Spring Cloud AWS 3.3.0 is available!&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=oWbKtmtPGpg&quot;&gt;A neat video on stored procedures in Spring&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;A very interesting article on the &lt;a href=&quot;https://www.infoq.com/articles/spring-security-flow-diagrams/&quot;&gt;flow diagrams for Spring Security&lt;/a&gt;?a must-bookmark!&lt;/li&gt;
-&lt;li&gt;The Spring Academy has &lt;a href=&quot;https://spring.academy/courses/spring-cloud-stream&quot;&gt;a new tutorial on Spring Cloud Stream&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Christian Tsolov (our very own Spring AI &lt;em&gt;wunderkind&lt;/em&gt;!) has an amazing blog detailing how &lt;a href=&quot;https://spring.io/blog/2025/01/21/spring-ai-agentic-patterns&quot;&gt;to write agentic code with Spring AI&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2025/01/17/spring-data-2024-1-2-and-2024-0-8-released&quot;&gt;Spring Data 2024.1.2 and 2024.0.8 released&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2025/01/17/spring-grpc-0-3-0&quot;&gt;Spring gRPC 0.3.0 released&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;In last week&apos;s installment of a &lt;em&gt;Bootiful Podcast&lt;/em&gt;, &lt;a href=&quot;https://spring.io/blog/2025/01/16/a-bootiful-podcast-dan-haywood&quot;&gt;I talked to the Apache Causeway project&apos;s Dan Haywood&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://spring.io/blog/2025/01/16/spring-framework-6-2-2-available-now&quot;&gt;Spring Framework 6.2.2 is available&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Spring Data 2024.1.2 and 2024.0.8 released]]></title><link>https://spring.io/blog/2025/01/17/spring-data-2024-1-2-and-2024-0-8-released</link><guid isPermaLink="true">https://spring.io/blog/2025/01/17/spring-data-2024-1-2-and-2024-0-8-released</guid><dc:creator><![CDATA[mp911de]]></dc:creator><pubDate>Fri, 17 Jan 2025 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;On behalf of the team and everyone who has contributed, I¡¯m pleased to announce the availability of &lt;code&gt;2024.1.2&lt;/code&gt; and &lt;code&gt;2024.0.8&lt;/code&gt; service releases. These releases ship with dependency upgrades, fixes for regressions and selected improvements.&lt;/p&gt;
-&lt;p&gt;The upcoming Spring Boot releases will pick up the above releases by next week.&lt;/p&gt;
-&lt;p&gt;Next week, we are shipping a first milestone of the Spring Data 4.0 development line (Calver 2025.1.0 M1) containing several refinements around JPA support including the baseline upgrade to JPA 3.2 (Hibernate 7.0 Beta3, Eclipselink 5.0 B05) based on Spring Framework 7.0 M1. This is going to be a very early milestone and we&apos;re eager to hear about your experience.&lt;/p&gt;
-&lt;h2 id=&quot;202412&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#202412&quot; aria-label=&quot;202412 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2024.1.2&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Spring Data Commons &lt;code&gt;3.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/commons/docs/3.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/commons/reference/3.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-commons/releases/tag/3.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data JPA &lt;code&gt;3.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/jpa/docs/3.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/jpa/reference/3.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-jpa/releases/tag/3.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Neo4j &lt;code&gt;7.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/neo4j/docs/7.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/neo4j/reference/7.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-neo4j/releases/tag/7.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data MongoDB &lt;code&gt;4.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/mongodb/docs/4.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/mongodb/reference/4.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-mongodb/releases/tag/4.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data KeyValue &lt;code&gt;3.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/keyvalue/docs/3.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/keyvalue/reference/3.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-keyvalue/releases/tag/3.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data for Apache Cassandra &lt;code&gt;4.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/cassandra/docs/4.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/cassandra/reference/4.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-cassandra/releases/tag/4.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data LDAP &lt;code&gt;3.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/ldap/docs/3.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/ldap/reference/3.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-ldap/releases/tag/3.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data REST &lt;code&gt;4.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/rest/docs/4.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/rest/reference/4.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-rest/releases/tag/4.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Redis &lt;code&gt;3.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/redis/docs/3.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/redis/reference/3.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-redis/releases/tag/3.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Elasticsearch &lt;code&gt;5.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/elasticsearch/docs/5.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/elasticsearch/reference/5.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-elasticsearch/releases/tag/5.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Couchbase &lt;code&gt;5.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/couchbase/docs/5.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/couchbase/reference/5.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-couchbase/releases/tag/5.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Relational &lt;code&gt;3.4.2&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/relational/docs/3.4.2/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/relational/reference/3.4/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-relational/releases/tag/3.4.2&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;202408&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#202408&quot; aria-label=&quot;202408 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;2024.0.8&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Spring Data Commons &lt;code&gt;3.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/commons/docs/3.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/commons/reference/3.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-commons/releases/tag/3.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data JPA &lt;code&gt;3.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/jpa/docs/3.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/jpa/reference/3.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-jpa/releases/tag/3.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Neo4j &lt;code&gt;7.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/neo4j/docs/7.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/neo4j/reference/7.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-neo4j/releases/tag/7.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data MongoDB &lt;code&gt;4.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/mongodb/docs/4.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/mongodb/reference/4.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-mongodb/releases/tag/4.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data KeyValue &lt;code&gt;3.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/keyvalue/docs/3.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/keyvalue/reference/3.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-keyvalue/releases/tag/3.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data for Apache Cassandra &lt;code&gt;4.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/cassandra/docs/4.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/cassandra/reference/4.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-cassandra/releases/tag/4.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data LDAP &lt;code&gt;3.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/ldap/docs/3.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/ldap/reference/3.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-ldap/releases/tag/3.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data REST &lt;code&gt;4.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/rest/docs/4.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/rest/reference/4.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-rest/releases/tag/4.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Redis &lt;code&gt;3.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/redis/docs/3.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/redis/reference/3.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-redis/releases/tag/3.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Elasticsearch &lt;code&gt;5.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/elasticsearch/docs/5.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/elasticsearch/reference/5.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-elasticsearch/releases/tag/5.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Couchbase &lt;code&gt;5.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/couchbase/docs/5.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/couchbase/reference/5.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-couchbase/releases/tag/5.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Spring Data Relational &lt;code&gt;3.3.8&lt;/code&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/relational/docs/3.3.8/api/&quot;&gt;Javadoc&lt;/a&gt; - &lt;a href=&quot;https://docs.spring.io/spring-data/relational/reference/3.3/&quot;&gt;Documentation&lt;/a&gt; - &lt;a href=&quot;https://github.com/spring-projects/spring-data-relational/releases/tag/3.3.8&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;We want to address those issues. And so we are announcing today that starting with the early releases that align with the major versions of the portfolio later this year (Spring Framework 7, Spring Boot 4, etc) we will begin to release our milestone and release candidate releases to Maven Central in addition to &lt;a href=&quot;https://repo.spring.io&quot;&gt;https://repo.spring.io&lt;/a&gt;. Our goal is to provide access to as many as possible to those early releases and enable every opportunity for the ecosystem to evolve along with us. While we make this transition, while Spring Framework 7.0.0-M1 is due out this month and will be the first release to Maven Central for a milestone release, milestones and release candidates that align with the minor version feature releases in May (Spring Boot 3.5, etc) will continue to only be available via &lt;a href=&quot;https://repo.spring.io&quot;&gt;https://repo.spring.io&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We continue to look for new ways to make things easier for you to consume Spring and be a part of the process that delivers the capabilities you know and love. Our change from a &lt;a href=&quot;https://spring.io/blog/2025/01/06/hello-dco-goodbye-cla-simplifying-contributions-to-spring&quot;&gt;CLA to the DCO&lt;/a&gt; is one recent example and we hope that this will represent another way of simplifying the way you work with Spring.&lt;/p&gt;</content:encoded></item></channel></rss>

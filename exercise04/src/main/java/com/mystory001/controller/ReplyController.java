@@ -1,7 +1,5 @@
 package com.mystory001.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mystory001.domain.Criteria;
+import com.mystory001.domain.ReplyPageDTO;
 import com.mystory001.domain.ReplyVO;
 import com.mystory001.service.ReplyServiceInterface;
 
@@ -45,11 +44,12 @@ public class ReplyController {
 	
 	/* 특정 게시물의 댓글 목록 확인 */
 	@GetMapping(value = "/pages/{bno}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyVO>> getListWithPaging(@PathVariable("page") int page, @PathVariable("bno") int bno){
+	public ResponseEntity<ReplyPageDTO> getListWithPaging(@PathVariable("page") int page, @PathVariable("bno") int bno){
 		log.info("ReplyController getListWithPaging()...............");
 		Criteria criteria = new Criteria(page,10);
+		log.info("get Reply List bno : " + bno);
 		log.info("criteria : " + criteria);
-		return new ResponseEntity<>(replyService.getListWithPaging(criteria, bno), HttpStatus.OK);
+		return new ResponseEntity<>(replyService.getListPage(criteria, bno), HttpStatus.OK);
 	}
 	/*
 	 * getListWithPaging() : Criteria를 이용해서 파라미터를 수집.

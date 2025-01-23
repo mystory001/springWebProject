@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.mystory001.domain.Criteria;
+import com.mystory001.domain.ReplyPageDTO;
 import com.mystory001.domain.ReplyVO;
 
 public interface ReplyServiceInterface {
@@ -19,5 +20,5 @@ public interface ReplyServiceInterface {
 	
 	public List<ReplyVO> getListWithPaging(Criteria criteria, Integer bno);
 	
-	
+	public ReplyPageDTO getListPage(Criteria criteria, Integer bno);
 }

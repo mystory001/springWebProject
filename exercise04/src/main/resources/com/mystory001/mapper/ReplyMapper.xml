@@ -29,10 +29,26 @@
 	</update>
 	
 	<select id="getListWithPaging" resultType="com.mystory001.domain.ReplyVO">
-		select rno, bno, reply, replyer, replydate, updatedate
+		<!-- select rno, bno, reply, replyer, replydate, updatedate
 		from reply
-		where bno = #{bno} <!-- #{bno}가 ReplyMapper 인터페이스의 @Param("bno")와 매칭되어 사용됨 -->
-		order by rno asc
+		where bno = #{bno} #{bno}가 ReplyMapper 인터페이스의 @Param("bno")와 매칭되어 사용됨 
+		order by rno asc  -->
+		
+		<![CDATA[
+			select rno, bno, reply, replyer, replydate, updatedate
+			from(
+			    select /*+ index(reply, reply_idx) */ rownum rn, rno, bno, reply, replyer, replydate, updatedate
+			    from reply
+			    where bno = #{bno} and rno > 0 and rownum <= #{criteria.pageNum} * #{criteria.amount}
+			    )
+			where rn >(#{criteria.pageNum} - 1) * #{criteria.amount}
+		]]>
+	</select>
+	
+	<select id="getCountByBno" resultType="int">
+		<![CDATA[
+			select count(rno) from reply where bno = #{bno}
+		]]>
 	</select>
 
 </mapper>

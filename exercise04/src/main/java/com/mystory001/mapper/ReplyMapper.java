@@ -19,4 +19,6 @@ public interface ReplyMapper { // 댓글에 대한 처리는 화면상에서 페
 	
 	public List<ReplyVO> getListWithPaging(@Param("criteria") Criteria criteria,@Param("bno") Integer bno);
 	
+	public int getCountByBno(int bno);
+	
 }

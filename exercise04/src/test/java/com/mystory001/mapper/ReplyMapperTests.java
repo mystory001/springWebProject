@@ -71,17 +71,22 @@ public class ReplyMapperTests {
 	@Test
 	public void testGetListWithPaging() {
 		Criteria criteria = new Criteria();
-		
 		// 2184928
 		List<ReplyVO> list = replyMapper.getListWithPaging(criteria, 2184928);
-		
 		for(int i = 0; i < list.size(); i++) {
 			log.info(list);
 		}
-		
 	}
 	
-	
+	@Test
+	public void testGetListWithPaging2() {
+		Criteria criteria = new Criteria(2,10);
+		// 2184930
+		List<ReplyVO> list = replyMapper.getListWithPaging(criteria, 2184930);
+		for(int i = 0; i < list.size(); i++) {
+			log.info(list);
+		}
+	}
 	
 	
 	
