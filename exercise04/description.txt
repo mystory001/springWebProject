@@ -100,9 +100,5 @@ alter table reply add constraint reply_fk foreign key (bno) references board(bno
   3) 댓글이 추가되면 댓글의 숫자만을 가져와서 최종 페이지를 찾아 이동
   4) 댓글의 수정과 삭제 후에는 다시 동시 페이지를 호출
 
-
-
-
-
-
-
+* 댓글과 댓글 수 처리
+alter table board add(replycnt number default 0);

@@ -60,9 +60,9 @@
 	
 	<select id="getListWithPaging" resultType="com.mystory001.domain.BoardVO">
 	 	<![CDATA[ 
-	 	select bno, title, content, writer, regdate, updatedate
+	 	select bno, title, content, writer, regdate, updatedate, replycnt
 	 	from (
-	 		  select /*+ index_desc(board board_pk)*/ rownum rn, bno, title, content, writer, regdate, updatedate
+	 		  select /*+ index_desc(board board_pk)*/ rownum rn, bno, title, content, writer, regdate, updatedate, replycnt
 	 		  from board
 	 		  where
 	 	 ]]> 
@@ -81,5 +81,9 @@
 	 	<include refid="criteria"></include>
 	 	bno > 0 
 	</select>
+	
+	<update id="updateReplyCnt">
+		update board set replycnt = replycnt + #{amount} where bno = #{bno}
+	</update>
 
 </mapper>

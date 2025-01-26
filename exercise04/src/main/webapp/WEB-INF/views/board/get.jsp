@@ -62,7 +62,7 @@
                             						</div>
                             					</li>
                             				</ul>
-				                            <div class="panel-footer pull-right"></div>
+				                            <div class="panel-footer"></div>
                             			</div>
                             		</div>
                             	</div>
@@ -215,6 +215,7 @@ $(document).ready(function(){
 			
 			var str ="";
 			if(list ==null || list.length == 0){
+				replyUL.html("");
 				return;
 			}
 			
@@ -309,50 +310,47 @@ $(document).ready(function(){
 	var pageNum = 1;
 	var replyPageFooter = $(".panel-footer");
 	
-	function showReplyPage(replyCnt){
-		
-		var endNum = Math.ceil(pageNum/10.0)*10;
-		var startNum = endNum - 9;
-		
-		var prev = startNum != 1;
-		var next = false;
-		
-		if(endNum * 10 >= replyCnt){
-			endNum = Math.ceil(replyCnt/10.0);
-		}
-		if(endNum * 10 < replyCnt){
-			next = true;
-		}
-		
-		var str = "<ul class='pagination'>";
-		
-		if(prev){
-			str += "<li class='page-item'><a class='page-link' href='"+(startNum - 1)+"' tabindex='-1'>Previous</a></li>";
-		}
-		for(var i = startNum ; i <= endNum; i++){
-			var active = pageNum == 1 ? "active" : "";
-			 str += "<li class='page-item " + active + "'><a class='page-link' href='" + i + "'>" + i + "</a></li>";
-		}
-		
-		if(next){
-			str += "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
-		}
-		
-		str += "</ul>";
-		replyPageFooter.html(str);
-	}
-	
-	replyPageFooter.on("click", "li a", function(e){
-		e.preventDefault();
-		
-		var targetPageNum = $(this).attr("herf");
-		
-		pageNum = targetPageNum;
-		
-		showList(pageNum);
-		
-	}) // replyPageFooter
-	
+    function showReplyPage(replyCnt) {
+        var endNum = Math.ceil(pageNum / 10.0) * 10;
+        var startNum = endNum - 9;
+
+        var prev = startNum != 1;
+        var next = false;
+
+        if (endNum * 10 >= replyCnt) {
+            endNum = Math.ceil(replyCnt / 10.0);
+        }
+        if (endNum * 10 < replyCnt) {
+            next = true;
+        }
+
+        var str = "<ul class='pagination pull-right'>";
+        if (prev) {
+            str += "<li class='page-item'><a class='page-link' href='" + (startNum - 1) + "'>Previous</a></li>";
+        }
+        for (var i = startNum; i <= endNum; i++) {
+            var active = pageNum == i ? "active" : "";
+
+            str += "<li class='page-item " + active + "'><a class='page-link' href='" + i + "'>" + i + "</a></li>";
+        }
+        if (next) {
+            str += "<li class='page-item'><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
+        }
+        str += "</ul>";
+
+        replyPageFooter.html(str);
+    }; // showReplyPage(replyCnt) 
+    
+    replyPageFooter.on("click", "li a", function (e) {
+        e.preventDefault();
+        console.log("page click");
+
+        var targetPageNum = $(this).attr("href");
+        console.log("targetPageNum: " + targetPageNum);
+
+        pageNum = targetPageNum;
+        showList(pageNum);
+    });	// replyPageFooter
 	
 }); // $(document).ready(function()
 </script>
