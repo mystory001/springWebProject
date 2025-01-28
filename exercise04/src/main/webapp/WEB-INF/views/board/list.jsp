@@ -134,12 +134,15 @@ $(document).ready(function(){
 	 $(".page-link").on("click", function(e){
 		 e.preventDefault();
 		 
+		 actionForm.find("input[name='bno']").remove();
+		 actionForm.attr("action", "/board/list")
 		 actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 		 actionForm.submit();
 	 }); // actionForm
 	 
 	 $(".move").on("click", function(e){
 		 e.preventDefault();
+	     actionForm.find("input[name='bno']").remove();
 		 
 		 actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
 		 actionForm.attr("action","/board/get");

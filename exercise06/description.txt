@@ -1,0 +1,47 @@
+* 파일 업로드 방식
+- <form> 태그, Ajax 두 가지 방법
+- <form> : 브라우저의 제한이 없어야 하는 경우 사용
+         : 일반적으로 페이지 이동과 동시에 첨부파일을 업로드 하는 방식
+         : <iframe>을 이용해서 화면의 이동 없이 첨부파일을 처리하는 방식
+- Ajax : 첨부파일을 별도로 처리하는 방식
+       : <input type='file'>을 이용하고 Ajax로 처리하는 방식
+       : HTML5의 드래그 앤 드랍 기능이나 jQuery 라이브러리를 이용해서 처리하는 방식
+- 브라우저 상에서 첨부파일을 처리하는 방식은 다양하지만, 서버 쪽에서의 처리는 대부분 비슷함. 응답을 HTML 코드, JSON 등으로 처리하는지의 정도의 구분만 하면 됨. 
+  주의할 점은 첨부파일의 처리를 위해서 어떤 종류의 라이브러리나 APO 등을 활용할 것인지에 대한 부분
+  cos.jar : 권장하지 않음
+  commons-fileupload : 가장 일반적으로 활용, 서블릿 스펙 3.0 이전에도 사용 가능
+  서블릿 3.0 이상 : 자체적인 파일 업로드 처리가 API 상에서 지원(Tomcat 7 버전 이후, 첨부파일은 실제 서버가 동작하는 머신 내에 있는 폴더에 업로드 시켜야함)
+
+* 어떤 multi-part 설정도 제공되지 않았기 때문에, part들을 처리할 수 없습니다.
+- Servers에 Tomcat v9.0 Server at localhost-config → context.xml 수정
+<Context allowCasualMultipartParsing="true" path="/">
+    <Resources cachingAllowed="true" cacheMaxSize="100000" />
+    <!-- Default set of monitored resources. If one of these changes, the    -->
+    <!-- web application will be reloaded.                                   -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
+
+    <!-- Uncomment this to disable session persistence across Tomcat restarts -->
+    <!--
+    <Manager pathname="" />
+    -->
+</Context>
+
+* MultipartFile 메서드
+- String getName() : 파라미터 이름 <input> 태그의 이름
+- String getOriginalFileName() : 업로드 되는 파일의 이름
+- boolean isEmpty() : 파일이 존재하지 않는 경우 true
+- long getSize() : 업로드되는 파일의 크기
+- byte[] getBytes() : byte[]로 파일 데이터 반환
+- InputStream getInputStream() : 파일데이터와 연결된 InputStream을 반환
+- transferTo(File file) : 파일의 저장
+
+* 파일 업로드에서 고려해야 하는 점
+- 동일한 이름으로 파일이 업로드 되었을 때 기존 파일이 사라지는 문제
+- 이미지 파일의 경우 원본 파일의 용량이 큰 경우 섬네일 이미지를 생성해야 하는 문제
+- 이미지 파일과 일반 파일을 구분해서 다운로드 혹은 페이지에서 조회하도록 처리하는 문제
+- 첨부파일 공격에 대비하기 위한 업로드 파일의 확장자 제한
+
+
+
