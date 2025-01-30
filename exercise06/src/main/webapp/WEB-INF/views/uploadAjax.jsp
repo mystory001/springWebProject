@@ -21,34 +21,54 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+	// 파일 확장자 및 크기 검증 함수
+	var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+	var maxSize = 5242880; // 5MB
+
+	function checkExtension(fileName, fileSize){
+		if(fileSize >= maxSize){
+			alert("파일 사이즈 초과 하였습니다.");
+			return false;
+		}
+		
+		if(regex.test(fileName)){
+			alert("해당 종류의 파일은 업로드할 수 없습니다.");
+			return false;
+		}
+		return true;
+	}
+
+	// 파일 업로드 버튼 클릭 이벤트 핸들러
 	$("#uploadBtn").on("click", function(e){
 		var formData = new FormData();
 		var inputFile = $("input[name='uploadFile']");
 		var files = inputFile[0].files;
+		console.log(files);
 		
-// 		console.log(files);
-	
+		// 파일 확장자 및 크기 검증
 		for(var i = 0; i < files.length; i++){
+			if(!checkExtension(files[i].name, files[i].size)){
+				alert(files[i].name+" 을/를 업로드 중 문제가 발생했습니다.");
+				return false; // 검증 실패 시 업로드 중단
+			}
 			formData.append("uploadFile", files[i]);
+			alert(files[i].name + " 을/를 업로드 하였습니다.");
 		}
 		
+		// AJAX를 통한 파일 업로드
 		$.ajax({
 			url : "/uploadAjaxAction",
 			processData : false,
 			contentType : false,
 			data : formData,
-			type : "post", /* 일반적으로 HTTP 메서드는 대소문자를 구분하지 않지만, 코드에서 일관성을 유지하기 위해 일반적으로 "POST"와 같은 대문자를 사용하는 것이 관례 */
+			type : "post",
+			dataType: "json",
 			success : function(result){
-				alert("Uploaded");
+				console.log(result);
 			}
-		})
-
-	})
-	
-})
-
-
-
+		}); // $.ajax
+	}); // $("#uploadBtn")
+});
 </script>
   
 </body>
