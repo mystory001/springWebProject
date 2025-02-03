@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
@@ -164,6 +165,77 @@ public class UploadController {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	// 이미지 파일 이외의 첨부파일의 다운로드
+	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@ResponseBody
+	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName){ // Resource : 리소스가 실제 물리적 형태로 존재하는지 확인
+																												  // IE/Edge 브라우저에서 한글 파일 문제 → @RequestHearder로 디바이스 정보를 알 수 있는 헤더값을 이용 
+		log.info("UploadController download...............");
+		log.info("fileName : " + fileName);
+		
+		FileSystemResource resource = new FileSystemResource("C:\\upload\\" + fileName);
+		log.info("resource : " + resource);
+		
+		if(resource.exists() == false) {
+			return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
+		}
+		
+		String resourceName = resource.getFilename();
+		
+		HttpHeaders headers = new HttpHeaders();
+		
+		try {
+			String downloadName = null;
+			
+			if(userAgent.contains("Trident")) {
+				log.info("IE Browser");
+				
+				downloadName = URLEncoder.encode(resourceName, "UTF-8").replace("\\+", " ");
+			} else if(userAgent.contains("Edge")) {
+				log.info("Edge Browser");
+				
+				downloadName = URLEncoder.encode(resourceName, "UTF-8");
+				
+				log.info("Edge name : " + downloadName);
+			} else {
+				log.info("Chrome Browser");
+				
+				downloadName = new String(resourceName.getBytes("UTF-8"), "ISO-8859-1");
+			}
+			
+			headers.add("Content-Disposition", "attatchment; filename=" + downloadName);
+		} catch(UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+	}
+	
+	// 서버 첨부파일 삭제
+	@PostMapping("/deleteFile")
+	@ResponseBody
+	public ResponseEntity<String> deleteFile(String fileName, String type){
+		log.info("UploadController deleteFile...............");
+		log.info("delete File : " + fileName);
+		
+		File file;
+		
+		try {
+			file = new File("C:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
+			file.delete();
+			
+			if(type.equals("image")) {
+				String largeFileName = file.getAbsolutePath().replace("s_","");
+				log.info("largeFileName : " + largeFileName);
+				file = new File(largeFileName);
+				file.delete();
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<String>("deleted", HttpStatus.OK);
 	}
 
 }

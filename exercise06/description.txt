@@ -52,3 +52,15 @@
 - checkImageType 메서드는 파일의 MIME 타입을 확인하여 이미지 파일인지 판단
   이미지 파일: MIME 타입이 image/jpeg, image/png, image/gif 등으로 시작
   텍스트 파일: MIME 타입이 text/plain으로 시작
+  
+* 첨부파일을 위한 테이블 생성
+create table attach(
+	uuid varchar2(100) not null,
+	uploadPath varchar2(200) not null,
+	fileName varchar2(100) not null,
+	filetype char(1) default 'I',
+	bno number(10,0)
+);
+
+alter table attach add constraint attach_pk primary key (uuid);
+alter table attach add constraint board_attach_fk foreign key (bno) references board(bno);  
