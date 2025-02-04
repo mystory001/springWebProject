@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID">
-
-<!-- web.xml : WAS(Tomcat) 자체의 설정 -->
-
-<Context allowCasualMultipartParsing="true" path="/">
-</Context>
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
@@ -35,13 +30,6 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
-	<multipart-config> <!-- 특정 사이즈의 메모리 사용, 업로드되는 파일을 저장할 공간, 업로드되는 파일의 ㅊ최대 크기, 한 번에 올릴 수 있는 최대 크기를 지정 -->
-      <location>C:\\upload\\temp</location>
-      <max-file-size>20971520</max-file-size> <!--1MB * 20 -->
-      <max-request-size>41943040</max-request-size><!-- 40MB -->
-      <file-size-threshold>20971520</file-size-threshold> <!-- 20MB -->
-	</multipart-config>
-	
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>

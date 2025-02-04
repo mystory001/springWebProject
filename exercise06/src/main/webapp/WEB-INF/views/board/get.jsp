@@ -4,75 +4,135 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="inc/top.jsp" %>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">board/get</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            read
-                        </div>
-                        <div class="panel-body">
-                            	<div class="form-group">
-                            		<label>BNO</label>
-                            		<input class="form-control" name="bno" value="<c:out value='${boardVO.bno}'/>" readonly>
-                            	</div>
-                            	<div class="form-group">
-                            		<label>TITLE</label>
-                            		<input class="form-control" name="title" value="<c:out value='${boardVO.title}'/>" readonly>
-                            	</div>
-                            	<div class="form-group">
-                            		<label>CONTENT</label>
-                            		<textarea class="form-control" rows="3" name="content" readonly><c:out value='${boardVO.content}'/></textarea>
-                            	</div>
-                            	<div class="form-group">
-                            		<label>WRITER</label>
-                            		<input class="form-control" name="writer" value="<c:out value='${boardVO.writer}'/>" readonly>
-                            	</div>
-                            	<button data-oper="update" class="btn btn-default">Update</button>
-                            	<button data-oper="list" class="btn btn-info">List</button>
-                            <form id="operForm" action="/board/update" method="get">
-                            	<input type="hidden" name="bno" id="bno" value="<c:out value='${boardVO.bno }'/>"> 
-                            	<input type="hidden" name="pageNum" value="<c:out value='${criteria.pageNum}'/>"> 
-                            	<input type="hidden" name="amount" value="<c:out value='${criteria.amount}'/>"> 
-                            	<input type="hidden" name="keyword" value="<c:out value='${criteria.keyword}'/>"> 
-                            	<input type="hidden" name="type" value="<c:out value='${criteria.type}'/>"> 
-                            </form>
-                            <br>
-                            <div class="row">
-                            	<div class="col-lg-12">
-                            		<div class="panel panel-default">
-                            			<div class="panel panel-heading">
-                            				<i class="fa fa-comments fa-fw"></i>Reply
-                            				<button id="addReplyBtn" class="btn btn-primary btn-xs pull-right">New Reply</button>
-                            			</div>
-                            			
-                            			<div class="panel-body">
-                            				<ul class="chat">
-                            					<li class="left clearfix" data-rno="5">
-                            						<div>
-                            							<div class="header">
-                            								<strong class="primary-font">Replyer</strong>
-                            								<small class="pull-right text-muted">2025-01-22 22:05</small>
-                            							</div>
-                            							<p>Hello World</p>
-                            						</div>
-                            					</li>
-                            				</ul>
-				                            <div class="panel-footer"></div>
-                            			</div>
-                            		</div>
-                            	</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="row">
+	<div class="col-lg-12">
+		<h1 class="page-header">board/get</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Read</div>
+
+			<div class="panel-body">
+				<div class="form-group">
+					<label>BNO</label> <input class="form-control" name='bno' value='<c:out value="${boardVO.bno}"/>' readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label>TITLE</label> <input class="form-control" name='title' value='<c:out value="${boardVO.title}"/>' readonly="readonly">
+				</div>
+
+				<div class="form-group">
+					<label>CONTENT</label>
+					<textarea class="form-control" rows="3" name='content' readonly="readonly"><c:out value="${boardVO.content}" /></textarea>
+				</div>
+
+				<div class="form-group">
+					<label>WRITER</label> <input class="form-control" name='writer' value='<c:out value="${boardVO.writer }"/>' readonly="readonly">
+				</div>
+
+				<button data-oper='update' class="btn btn-default">Update</button>
+				<button data-oper='list' class="btn btn-info">List</button>
+
+				<form id='operForm' action="/board/update" method="get">
+					<input type='hidden' id='bno' name='bno' value='<c:out value="${boardVO.bno}"/>'> 
+					<input type='hidden' name='pageNum' value='<c:out value="${criteria.pageNum}"/>'> 
+					<input type='hidden' name='amount' value='<c:out value="${criteria.amount}"/>'> 
+					<input type='hidden' name='keyword' value='<c:out value="${criteria.keyword}"/>'> 
+					<input type='hidden' name='type' value='<c:out value="${criteria.type}"/>'>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='bigPictureWrapper'>
+  <div class='bigPicture'>
+  </div>
+</div>
+
+<style>
+.uploadResult {
+  width:100%;
+  background-color: gray;
+}
+.uploadResult ul{
+  display:flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+}
+.uploadResult ul li {
+  list-style: none;
+  padding: 10px;
+  align-content: center;
+  text-align: center;
+}
+.uploadResult ul li img{
+  width: 100px;
+}
+.uploadResult ul li span {
+  color:white;
+}
+.bigPictureWrapper {
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top:0%;
+  width:100%;
+  height:100%;
+  background-color: gray; 
+  z-index: 100;
+  background:rgba(255,255,255,0.5);
+}
+.bigPicture {
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.bigPicture img {
+  width:600px;
+}
+</style>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+
+			<div class="panel-heading">Files</div>
+			<div class="panel-body">
+
+				<div class='uploadResult'>
+					<ul>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='row'>
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+		      <i class="fa fa-comments fa-fw"></i> Reply
+		      <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
+			</div>      
+		<div class="panel-body">        
+		        <ul class="chat"></ul>
+	    </div>
+		<div class="panel-footer"></div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -80,32 +140,27 @@
 				<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
 			</div>
 			<div class="modal-body">
-				<div class="form-grouop">
-					<label>Reply</label>
-					<input class="form-control" name="reply" value="reply">
+				<div class="form-group">
+					<label>Reply</label> <input class="form-control" name='reply' value='New Reply'>
 				</div>
 				<div class="form-group">
-					<label>Replyer</label>
-					<input class="form-control" name="replyer" value="replyer">
+					<label>Replyer</label> <input class="form-control" name='replyer' value='replyer'>
 				</div>
 				<div class="form-group">
-					<label>Reply Date</label>
-					<input class="form-control" name="replydate" value="">
+					<label>Reply Date</label> <input class="form-control" name='replyDate' value='2018-01-01 13:13'>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button id="modalModBtn" type="button" class="btn btn-warning">Update</button>
-				<button id="modalRemoveBtn" type="button" class="btn btn-danger">Delete</button>
-				<button id="modalRegisterBtn" type="button" class="btn btn-primary">Insert</button>
-				<button id="modalCloseBtn" type="button" class="btn btn-default">Close</button>
+				<button id='modalModBtn' type="button" class="btn btn-warning">Update</button>
+				<button id='modalRemoveBtn' type="button" class="btn btn-danger">Delete</button>
+				<button id='modalRegisterBtn' type="button" class="btn btn-primary">Insert</button>
+				<button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-
 <script type="text/javascript" src="/resources/js/reply.js"></script>
-
 
 <script>
 // $(function() {
@@ -114,14 +169,12 @@
 // 	var bnoValue = "<c:out value='${boardVO.bno}'/>";
 	
 	// add test
-	/*
-	 replyService.add(
-		{reply:"Javascript TEST", replyer:"Javascript tester", bno:bnoValue},
-		function(result){
-			alert("RESULT: " + result);
-		}
-	); 
-	*/
+// 	 replyService.add(
+// 		{reply:"Javascript TEST", replyer:"Javascript tester", bno:bnoValue},
+// 		function(result){
+// 			alert("RESULT: " + result);
+// 		}
+// 	); 
 	
 	// getList test
 	/*
@@ -352,6 +405,71 @@ $(document).ready(function(){
         showList(pageNum);
     });	// replyPageFooter
 	
+}); // $(document).ready(function()
+		
+$(document).ready(function(){
+	(function(){
+		var bno = '<c:out value ="${boardVO.bno}"/>';
+		
+		$.getJSON("/board/getAttachList",{bno:bno},function(arr){
+			console.log(arr);
+			
+			var str = "";
+			
+			$(arr).each(function(i, attach){
+				//image type
+				if(attach.fileType){
+					var fileCallPath = encodeURIComponent(attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName);
+					
+					str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
+		            str += "<img src='/display?fileName="+fileCallPath+"'>";
+		            str += "</div>";
+		            str + "</li>";
+		         }else{
+		           str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
+		           str += "<span> "+ attach.fileName+"</span><br/>";
+		           str += "<img src='/resources/img/attach.png'></a>";
+		           str += "</div>";
+		           str +"</li>";
+		         }
+		       });
+	       $(".uploadResult ul").html(str);
+			
+		}); // $.getJSON
+	})(); // (function(){
+		
+		$(".uploadResult").on("click","li",function(e){
+			console.log("view image");
+			
+			var liObj = $(this);
+			
+			var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+			
+			if(liObj.data("type")){
+				showImage(path.replace(new RegExp(/\\/g),"/"));
+			} else{
+				// download
+				self.location = "/download?fileName=" + path
+			} 
+		}); // $(".uploadResult")
+		
+		
+		function showImage(fileCallPath){
+		    alert(fileCallPath);
+		    $(".bigPictureWrapper").css("display","flex").show();
+		    $(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"' >").animate({width:'100%', height: '100%'}, 1000);
+		    
+		  }
+
+	    $(".bigPictureWrapper").on("click", function(e){
+		  	$(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
+		    
+		  	setTimeout(function(){
+		    	$('.bigPictureWrapper').hide();
+		    }, 1000);
+		  	
+		  }); // $(".bigPictureWrapper")
+		
 }); // $(document).ready(function()
 </script>
 

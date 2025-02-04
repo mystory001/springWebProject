@@ -1,5 +1,10 @@
 package com.mystory001.controller;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,8 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mystory001.domain.BoardAttachVO;
 import com.mystory001.domain.BoardVO;
 import com.mystory001.domain.Criteria;
 import com.mystory001.domain.PageDTO;
@@ -41,8 +48,17 @@ public class BoardController {
 	@PostMapping("/insert")
 	public String insert(BoardVO boardVO, RedirectAttributes redirectAttributes) {
 		log.info("BoardController insert()....................");
+//		boardService.insert(boardVO);
+//		redirectAttributes.addFlashAttribute("result", boardVO.getBno()); 
+		
+		log.info("boardVO : " + boardVO);
+		if(boardVO.getAttachList() != null) {
+			boardVO.getAttachList().forEach(attach -> log.info(attach));
+		}
+		
 		boardService.insert(boardVO);
-		redirectAttributes.addFlashAttribute("result", boardVO.getBno()); 
+		redirectAttributes.addFlashAttribute("result", boardVO.getBno());
+		
 		return "redirect:/board/list";
 	}
 	
@@ -99,6 +115,16 @@ public class BoardController {
 		
 		return "redirect:/board/list?";
 //		return "redirect:/board/list?" + criteria.getListLink();
+	}
+	
+	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<BoardAttachVO>> getAttachList(Integer bno){
+		log.info("BoardController getAttachList()....................");
+		
+		log.info("getAttachList : " + bno);
+		
+		return new ResponseEntity<List<BoardAttachVO>>(boardService.getAttachList(bno),HttpStatus.OK);
 	}
 	
 }
