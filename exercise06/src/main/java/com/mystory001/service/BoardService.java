@@ -52,9 +52,10 @@ public class BoardService implements BoardSerivceInterface{
 	}
 
 	@Override
-	public int delete(Integer bno) {
-		log.info("BoardService update()...............");
-		return boardMapper.delete(bno);
+	public boolean delete(Integer bno) {
+		log.info("BoardService delete()...............");
+		attachMapper.deleteAll(bno);
+		return boardMapper.delete(bno) == 1;
 	}
 
 	@Override

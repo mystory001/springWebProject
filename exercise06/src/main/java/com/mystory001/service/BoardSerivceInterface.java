@@ -14,7 +14,7 @@ public interface BoardSerivceInterface {
 	
 	public int update(BoardVO boardVO);
 	
-	public int delete(Integer bno);
+	public boolean delete(Integer bno);
 	
 //	public List<BoardVO> getList();
 

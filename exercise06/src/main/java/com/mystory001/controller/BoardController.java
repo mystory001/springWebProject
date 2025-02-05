@@ -1,5 +1,8 @@
 package com.mystory001.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -104,7 +107,11 @@ public class BoardController {
 	public String delete(@RequestParam("bno") Integer bno, RedirectAttributes redirectAttributes, @ModelAttribute("criteria") Criteria criteria) {
 		log.info("BoardController delete()....................");
 		log.info("bno............. : " + bno);
-		if(boardService.delete(bno) == 1) {
+		
+		List<BoardAttachVO> attachList = boardService.getAttachList(bno);
+		
+		if(boardService.delete(bno)) {
+			deleteFiles(attachList);
 			redirectAttributes.addFlashAttribute("result", "success");
 		}
 		
@@ -113,8 +120,8 @@ public class BoardController {
 		redirectAttributes.addAttribute("type", criteria.getType());
 		redirectAttributes.addAttribute("keyword", criteria.getKeyword());
 		
-		return "redirect:/board/list?";
-//		return "redirect:/board/list?" + criteria.getListLink();
+//		return "redirect:/board/list?";
+		return "redirect:/board/list?" + criteria.getListLink();
 	}
 	
 	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -125,6 +132,30 @@ public class BoardController {
 		log.info("getAttachList : " + bno);
 		
 		return new ResponseEntity<List<BoardAttachVO>>(boardService.getAttachList(bno),HttpStatus.OK);
+	}
+	
+	private void deleteFiles(List<BoardAttachVO> attachList) {
+		if(attachList == null || attachList.size() ==0) {
+			return;
+		}
+		log.info("BoardController deleteFiles()....................");
+		log.info("attachList : " + attachList);
+		
+		attachList.forEach(attach ->{
+			try {
+				Path file = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\" + attach.getUuid() + "_" + attach.getFileName());
+				
+				Files.deleteIfExists(file);
+				
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail = Paths.get("C:\\upload\\" + attach.getUploadPath() + "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+					
+					Files.delete(thumbNail);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 	}
 	
 }

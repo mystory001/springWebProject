@@ -12,4 +12,6 @@ public interface BoardAttachMapper {
 	
 	public List<BoardAttachVO> findByBno(Integer bno);
 	
+	public void deleteAll(Integer bno); // 첨부파일 삭제 처리
+	
 }
