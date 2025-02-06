@@ -59,6 +59,8 @@ public class BoardController {
 			boardVO.getAttachList().forEach(attach -> log.info(attach));
 		}
 		
+		log.info("==========================");
+		
 		boardService.insert(boardVO);
 		redirectAttributes.addFlashAttribute("result", boardVO.getBno());
 		
@@ -89,7 +91,7 @@ public class BoardController {
 		log.info("BoardController update()....................");
 		log.info("수정 전 boardVO : " + boardVO);
 		
-		if(boardService.update(boardVO) == 1) {
+		if(boardService.update(boardVO)) {
 			redirectAttributes.addFlashAttribute("result", "success");
 			log.info("수정 후 boardVO : " + boardVO);
 		}
@@ -115,10 +117,10 @@ public class BoardController {
 			redirectAttributes.addFlashAttribute("result", "success");
 		}
 		
-		redirectAttributes.addAttribute("pageNum", criteria.getPageNum());
-		redirectAttributes.addAttribute("amount", criteria.getAmount());
-		redirectAttributes.addAttribute("type", criteria.getType());
-		redirectAttributes.addAttribute("keyword", criteria.getKeyword());
+//		redirectAttributes.addAttribute("pageNum", criteria.getPageNum());
+//		redirectAttributes.addAttribute("amount", criteria.getAmount());
+//		redirectAttributes.addAttribute("type", criteria.getType());
+//		redirectAttributes.addAttribute("keyword", criteria.getKeyword());
 		
 //		return "redirect:/board/list?";
 		return "redirect:/board/list?" + criteria.getListLink();
@@ -135,7 +137,7 @@ public class BoardController {
 	}
 	
 	private void deleteFiles(List<BoardAttachVO> attachList) {
-		if(attachList == null || attachList.size() ==0) {
+		if(attachList == null || attachList.size() == 0) {
 			return;
 		}
 		log.info("BoardController deleteFiles()....................");

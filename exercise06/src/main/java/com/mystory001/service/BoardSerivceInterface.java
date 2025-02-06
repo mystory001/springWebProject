@@ -12,7 +12,7 @@ public interface BoardSerivceInterface {
 
 	public void insert(BoardVO boardVO);
 	
-	public int update(BoardVO boardVO);
+	public boolean update(BoardVO boardVO);
 	
 	public boolean delete(Integer bno);
 	
@@ -23,5 +23,7 @@ public interface BoardSerivceInterface {
 	public int getTotalCount(Criteria criteria);
 	
 	public List<BoardAttachVO> getAttachList(Integer bno);
+	
+	public void deleteAttach(Integer bno);
 	
 }

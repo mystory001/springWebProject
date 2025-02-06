@@ -45,12 +45,27 @@ public class BoardService implements BoardSerivceInterface{
 												   });
 	}
 
+	@Transactional
 	@Override
-	public int update(BoardVO boardVO) {
+	public boolean update(BoardVO boardVO) {
 		log.info("BoardService update()...............");
-		return boardMapper.update(boardVO);
+		log.info("boardVO : " + boardVO);
+		
+		attachMapper.deleteAll(boardVO.getBno());
+		
+		boolean updateResult = boardMapper.update(boardVO) == 1;
+		
+		if(updateResult && boardVO.getAttachList() != null || boardVO.getAttachList().size() > 0) {
+			boardVO.getAttachList().forEach(attach -> {
+				attach.setBno(boardVO.getBno());
+				attachMapper.insert(attach);
+			});
+		}
+		
+		return updateResult;
 	}
 
+	@Transactional
 	@Override
 	public boolean delete(Integer bno) {
 		log.info("BoardService delete()...............");
@@ -76,6 +91,12 @@ public class BoardService implements BoardSerivceInterface{
 		log.info("BoardService getAttachList()...............");
 		log.info("bno : "+ bno);
 		return attachMapper.findByBno(bno);
+	}
+
+	@Override
+	public void deleteAttach(Integer bno) {
+		log.info("BoardService deleteAttach()...............");
+		attachMapper.deleteAll(bno);
 	}
 
 }

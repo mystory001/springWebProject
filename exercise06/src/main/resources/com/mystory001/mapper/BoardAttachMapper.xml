@@ -25,4 +25,11 @@
 		delete from attach
 		where bno = #{bno}
 	</delete>
+	
+	<select id="getOldFiles" resultType="com.mystory001.domain.BoardAttachVO">
+		select * 
+		from attach
+		where uploadPath = to_char(sysdate -1, "yyyy\mm\dd")
+	</select>
+	
 </mapper>

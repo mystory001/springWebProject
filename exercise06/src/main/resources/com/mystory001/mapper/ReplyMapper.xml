@@ -50,5 +50,9 @@
 			select count(rno) from reply where bno = #{bno}
 		]]>
 	</select>
+	
+	<update id="updateReplyCnt">
+		update tbl_board set replycnt = replycnt + #{amount} where bno = #{bno}
+	</update>
 
 </mapper>

@@ -43,7 +43,7 @@ public class ReplyService implements ReplyServiceInterface{
 	@Override
 	public int delete(int rno) {
 		log.info("ReplyService delete()...............");
-		ReplyVO replyVO = new ReplyVO();
+		ReplyVO replyVO = replyMapper.get(rno);
 		boardMapper.updateReplyCnt(replyVO.getBno(), -1);
 		return replyMapper.delete(rno);
 	}
